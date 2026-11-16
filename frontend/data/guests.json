@@ -1,0 +1,44 @@
+[
+  {
+    "id": "g-1",
+    "event_id": "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d",
+    "invite_code": "VIP-KASUN7",
+    "name": "Mr. Kasun Perera & Family",
+    "phone": "+94771234567",
+    "phone_number": "+94771234567",
+    "max_seats": 3,
+    "rsvp_status": "pending",
+    "attending_count": 0,
+    "dietary_note": "",
+    "wish_text": "",
+    "notes": "Bride's close friend"
+  },
+  {
+    "id": "g-2",
+    "event_id": "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d",
+    "invite_code": "VIP-NIMAL3",
+    "name": "Dr. & Mrs. Nimal Silva",
+    "phone": "+94719876543",
+    "phone_number": "+94719876543",
+    "max_seats": 2,
+    "rsvp_status": "accepted",
+    "attending_count": 2,
+    "dietary_note": "Vegetarian for Mrs. Silva",
+    "wish_text": "Wishing you both a lifetime of happiness, laughter, and endless love!",
+    "notes": "Family physician"
+  },
+  {
+    "id": "g-3",
+    "event_id": "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d",
+    "invite_code": "FRIEND-SAM9",
+    "name": "Samantha Fernando",
+    "phone": "+94755554321",
+    "phone_number": "+94755554321",
+    "max_seats": 1,
+    "rsvp_status": "pending",
+    "attending_count": 0,
+    "dietary_note": "",
+    "wish_text": "",
+    "notes": "College mate"
+  }
+]

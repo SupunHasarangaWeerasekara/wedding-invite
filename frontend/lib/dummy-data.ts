@@ -1,0 +1,96 @@
+import { WeddingEvent, Guest, GalleryPhoto } from './types';
+
+export const defaultEvent: WeddingEvent = {
+  id: 'a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d',
+  couple_names: 'Sanjaya & Gagani',
+  couple_names_si: 'සංජය සහ ගගනි',
+  date_iso: '2026-12-18T09:30:00+05:30',
+  venue_name: 'Grand Ballroom, Shangri-La Colombo',
+  venue_address: '1 Galle Face, Colombo 02, Sri Lanka',
+  map_url: 'https://maps.google.com/?q=Shangri-La+Hotel+Colombo',
+  poruwa_time: '09:30 AM',
+  reception_time: '11:45 AM',
+  theme_id: 'crimson_black',
+  music_url: 'https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=piano-moment-9835.mp3', // royalty free romantic piano
+  font_family: 'Playfair Display',
+  font_size_scale: 'normal',
+  hero_image_url: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=80',
+  groom_image_url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80',
+  bride_image_url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80',
+  couple_avatar_url: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=400&q=80',
+  beloved_son_of: 'Rathnasiri & Karunawathi',
+  beloved_daughter_of: 'Gamini & Madhuka',
+  title_countdown: 'Until We Say "I Do"',
+  title_calendar: 'Save The Date',
+  title_schedule: 'Schedule',
+  title_venue: 'Venue',
+  title_note: 'Note',
+  text_note: 'Wedding theme: Crimson Red & Obsidian Black',
+};
+
+export const sampleGuests: Record<string, Guest> = {
+  'VIP-KASUN7': {
+    id: 'g-1',
+    event_id: defaultEvent.id,
+    invite_code: 'VIP-KASUN7',
+    name: 'Mr. Kasun Perera & Family',
+    phone_number: '+94771234567',
+    max_seats: 3,
+    rsvp_status: 'pending',
+    attending_count: 0,
+    wish_text: '',
+  },
+  'VIP-NIMAL3': {
+    id: 'g-2',
+    event_id: defaultEvent.id,
+    invite_code: 'VIP-NIMAL3',
+    name: 'Dr. & Mrs. Nimal Silva',
+    phone_number: '+94719876543',
+    max_seats: 2,
+    rsvp_status: 'accepted',
+    attending_count: 2,
+    dietary_note: 'Vegetarian for Mrs. Silva',
+    wish_text: 'Wishing you both a lifetime of happiness, laughter, and endless love!',
+  },
+  'FRIEND-SAM9': {
+    id: 'g-3',
+    event_id: defaultEvent.id,
+    invite_code: 'FRIEND-SAM9',
+    name: 'Samantha Fernando',
+    phone_number: '+94755554321',
+    max_seats: 1,
+    rsvp_status: 'pending',
+    attending_count: 0,
+  },
+};
+
+export const sampleGallery: GalleryPhoto[] = [
+  {
+    id: 'p-1',
+    event_id: defaultEvent.id,
+    image_url: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80',
+    caption: 'Our Journey Begins',
+    display_order: 1,
+  },
+  {
+    id: 'p-2',
+    event_id: defaultEvent.id,
+    image_url: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1200&q=80',
+    caption: 'Pre-wedding memories',
+    display_order: 2,
+  },
+  {
+    id: 'p-3',
+    event_id: defaultEvent.id,
+    image_url: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1200&q=80',
+    caption: 'Forever Together',
+    display_order: 3,
+  },
+  {
+    id: 'p-4',
+    event_id: defaultEvent.id,
+    image_url: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=1200&q=80',
+    caption: 'Walking into forever',
+    display_order: 4,
+  },
+];

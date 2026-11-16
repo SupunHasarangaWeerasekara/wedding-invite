@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+:root {
+  --sat: env(safe-area-inset-top, 0px);
+  --sab: env(safe-area-inset-bottom, 0px);
+}
+
+html, body {
+  background-color: #0A0406;
+  color: #FFF1F2;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Typography */
+.font-playfair {
+  font-family: 'Playfair Display', Georgia, serif !important;
+}
+
+.font-sinhala {
+  font-family: 'Abhaya Libre', 'Noto Serif Sinhala', Georgia, serif !important;
+}
+
+/* Luxury Crimson Red & Obsidian Black translucent card */
+.olive-card {
+  background: rgba(22, 9, 13, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(225, 29, 72, 0.32);
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.8), 0 0 25px -4px rgba(225, 29, 72, 0.22);
+  border-radius: 20px;
+}
+
+/* Heartbeat on calendar */
+@keyframes heartBeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+}
+
+.animate-heart-beat {
+  animation: heartBeat 1.4s ease-in-out infinite;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #0A0406;
+}
+::-webkit-scrollbar-thumb {
+  background: #E11D48;
+  border-radius: 9999px;
+}
