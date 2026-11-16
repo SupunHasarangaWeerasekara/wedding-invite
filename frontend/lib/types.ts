@@ -10,7 +10,7 @@ export interface WeddingEvent {
   map_url: string;
   poruwa_time: string;
   reception_time: string;
-  theme_id: 'terracotta' | 'navy' | 'burgundy' | 'midnight_blue' | 'crimson_black';
+  theme_id: 'terracotta' | 'navy' | 'burgundy' | 'midnight_blue' | 'crimson_black' | 'luxury_white';
   music_url: string;
 
   // Customizable font & typography

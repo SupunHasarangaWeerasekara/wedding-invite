@@ -17,22 +17,22 @@ export default function MusicPlayer({ isPlaying, onTogglePlay }: MusicPlayerProp
         whileHover={{ scale: 1.08 }}
         whileTap={{ scale: 0.92 }}
         aria-label={isPlaying ? 'Pause music' : 'Play music'}
-        className={`relative flex h-11 w-11 items-center justify-center rounded-full shadow-2xl transition-all duration-300 border cursor-pointer ${
+        className={`relative flex h-11 w-11 items-center justify-center rounded-full shadow-lg transition-all duration-300 border cursor-pointer ${
           isPlaying
-            ? 'bg-[#240810] border-rose-500/60 text-white shadow-[0_0_20px_rgba(225,29,72,0.55)]'
-            : 'bg-[#120509]/90 border-rose-950 text-rose-300/60'
+            ? 'bg-white border-rose-400 text-rose-600 shadow-[0_4px_20px_rgba(225,29,72,0.3)]'
+            : 'bg-white/95 border-rose-200 text-stone-400'
         }`}
       >
         {isPlaying ? (
           <>
             <span
-              className="absolute inset-0 rounded-full animate-ping opacity-30 bg-[#E11D48]"
+              className="absolute inset-0 rounded-full animate-ping opacity-25 bg-rose-400"
               style={{ animationDuration: '2s' }}
             />
-            <Volume2 className="h-5 w-5 text-rose-300" />
+            <Volume2 className="h-5 w-5 text-rose-600" />
           </>
         ) : (
-          <VolumeX className="h-5 w-5 text-gray-400" />
+          <VolumeX className="h-5 w-5 text-stone-400" />
         )}
       </motion.button>
     </div>

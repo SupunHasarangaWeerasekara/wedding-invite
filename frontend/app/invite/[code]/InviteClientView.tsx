@@ -128,15 +128,15 @@ export default function InviteClientView({
         />
       ) : (
         <main
-          className={`relative min-h-screen bg-[#0A0406] text-[#FFF1F2] overflow-x-hidden pb-12 ${fontScaleClass}`}
+          className={`relative min-h-screen bg-[#FAFAFA] text-[#1F2937] overflow-x-hidden pb-12 ${fontScaleClass}`}
         >
           {/* Floating Music Player */}
           <MusicPlayer isPlaying={isPlaying} onTogglePlay={toggleMusic} />
 
           {/* Fixed Top Header Bar */}
-          <header className="fixed top-0 left-0 right-0 z-30 flex h-14 items-center justify-between border-b border-rose-900/30 bg-[#120509]/95 px-3 sm:px-4 backdrop-blur-md">
+          <header className="fixed top-0 left-0 right-0 z-30 flex h-14 items-center justify-between border-b border-rose-100 bg-white/95 px-3 sm:px-4 backdrop-blur-md shadow-xs">
             {currentTab === 'story' ? (
-              <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-rose-400">
+              <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-rose-600">
                 Our Story
               </span>
             ) : (
@@ -145,7 +145,7 @@ export default function InviteClientView({
                   setCurrentTab('story');
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className="flex items-center gap-1 text-xs font-semibold text-rose-300 hover:text-white transition cursor-pointer"
+                className="flex items-center gap-1 text-xs font-semibold text-rose-600 hover:text-rose-800 transition cursor-pointer"
               >
                 <ArrowLeft className="h-3.5 w-3.5" />
                 <span>Our Story</span>
@@ -154,10 +154,10 @@ export default function InviteClientView({
 
             {/* Center couple names (English + Sinhala) */}
             <div className="flex flex-col items-center">
-              <span className="font-playfair italic text-xs sm:text-sm md:text-base text-white tracking-wide">
+              <span className="font-playfair italic text-xs sm:text-sm md:text-base text-stone-900 font-medium tracking-wide">
                 {event.couple_names}
               </span>
-              <span className="font-sinhala text-[10px] sm:text-[11px] text-rose-300 font-semibold leading-tight">
+              <span className="font-sinhala text-[10px] sm:text-[11px] text-rose-600 font-semibold leading-tight">
                 {sinhalaCoupleName}
               </span>
             </div>
@@ -193,46 +193,46 @@ export default function InviteClientView({
                   className="mx-auto max-w-md px-3.5 sm:px-4 pt-3 pb-8"
                   id="story"
                 >
-                  {/* Couple Hero Photo with Dark Bottom Gradient */}
-                  <div className="relative overflow-hidden rounded-3xl border border-rose-500/20 shadow-2xl">
+                  {/* Couple Hero Photo with Subtle Gradient */}
+                  <div className="relative overflow-hidden rounded-3xl border border-rose-200/80 shadow-xl">
                     <img
                       src={
                         event.hero_image_url ||
-                        'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=80'
+                        '/images/couple.webp'
                       }
                       alt={event.couple_names}
                       decoding="async"
                       className="h-[340px] sm:h-[400px] w-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0A0406] via-[#0A0406]/30 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
                   </div>
 
                   {/* Sparkle & Names */}
                   <div className="text-center mt-5 mb-4">
                     <div className="flex items-center justify-center gap-3 w-36 mx-auto mb-3 opacity-90">
-                      <div className="h-px flex-1 bg-gradient-to-r from-transparent to-rose-500" />
-                      <span className="text-rose-400 text-xs">✦</span>
-                      <div className="h-px flex-1 bg-gradient-to-l from-transparent to-rose-500" />
+                      <div className="h-px flex-1 bg-gradient-to-r from-transparent to-rose-400" />
+                      <span className="text-rose-500 text-xs">✦</span>
+                      <div className="h-px flex-1 bg-gradient-to-l from-transparent to-rose-400" />
                     </div>
 
                     <div className="mb-2">
-                      <h1 className="font-playfair italic text-3xl sm:text-4xl font-medium text-white">
+                      <h1 className="font-playfair italic text-3xl sm:text-4xl font-medium text-stone-900">
                         {nameParts[0]}
                       </h1>
-                      <span className="font-playfair italic text-lg sm:text-xl text-rose-400 my-0.5 block">&</span>
-                      <h1 className="font-playfair italic text-3xl sm:text-4xl font-medium text-white">
+                      <span className="font-playfair italic text-lg sm:text-xl text-rose-500 my-0.5 block">&</span>
+                      <h1 className="font-playfair italic text-3xl sm:text-4xl font-medium text-stone-900">
                         {nameParts[1]}
                       </h1>
 
                       {/* Sinhala Couple Badge */}
-                      <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-rose-500/40 bg-rose-950/40 px-3.5 sm:px-4 py-1">
-                        <span className="font-sinhala text-base sm:text-lg font-bold text-rose-100 tracking-wider">
+                      <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-rose-200 bg-rose-50/90 px-3.5 sm:px-4 py-1 shadow-xs">
+                        <span className="font-sinhala text-base sm:text-lg font-bold text-rose-900 tracking-wider">
                           {sinhalaCoupleName}
                         </span>
                       </div>
                     </div>
 
-                    <p className="text-xs text-rose-200/80 mt-3 leading-relaxed max-w-xs mx-auto">
+                    <p className="text-xs text-stone-600 mt-3 leading-relaxed max-w-xs mx-auto">
                       Together with their families, request the pleasure of your company.
                     </p>
                   </div>
@@ -240,52 +240,52 @@ export default function InviteClientView({
                   {/* Couple Profile Cards (Groom & Bride) */}
                   <div className="grid grid-cols-2 gap-2.5 sm:gap-3.5 my-6">
                     {/* Groom Card */}
-                    <div className="relative overflow-hidden rounded-2xl border border-rose-500/30 bg-[#16080C] shadow-lg">
+                    <div className="relative overflow-hidden rounded-2xl border border-rose-200/80 bg-white shadow-md">
                       <img
                         src={
                           event.groom_image_url ||
-                          'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80'
+                          '/images/boy.webp'
                         }
                         alt="Groom"
                         loading="lazy"
                         decoding="async"
                         className="h-44 sm:h-52 w-full object-cover"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#0A0406] via-transparent to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
                       <div className="absolute bottom-2.5 sm:bottom-3 left-0 right-0 text-center px-1">
-                        <p className="text-[8px] sm:text-[9px] uppercase tracking-[0.25em] font-semibold text-rose-400">
+                        <p className="text-[8px] sm:text-[9px] uppercase tracking-[0.25em] font-semibold text-rose-300">
                           Groom
                         </p>
                         <p className="font-playfair italic text-base sm:text-lg font-medium text-white">
                           {nameParts[0] || 'Winod'}
                         </p>
-                        <p className="font-sinhala text-xs sm:text-sm font-semibold text-rose-300">
+                        <p className="font-sinhala text-xs sm:text-sm font-semibold text-rose-200">
                           {sinhalaParts[0] || 'විනෝද්'}
                         </p>
                       </div>
                     </div>
 
                     {/* Bride Card */}
-                    <div className="relative overflow-hidden rounded-2xl border border-rose-500/30 bg-[#16080C] shadow-lg">
+                    <div className="relative overflow-hidden rounded-2xl border border-rose-200/80 bg-white shadow-md">
                       <img
                         src={
                           event.bride_image_url ||
-                          '/images/girl.jpeg'
+                          '/images/girl.webp'
                         }
                         alt="Bride"
                         loading="lazy"
                         decoding="async"
                         className="h-44 sm:h-52 w-full object-cover"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#0A0406] via-transparent to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
                       <div className="absolute bottom-2.5 sm:bottom-3 left-0 right-0 text-center px-1">
-                        <p className="text-[8px] sm:text-[9px] uppercase tracking-[0.25em] font-semibold text-rose-400">
+                        <p className="text-[8px] sm:text-[9px] uppercase tracking-[0.25em] font-semibold text-rose-300">
                           Bride
                         </p>
                         <p className="font-playfair italic text-base sm:text-lg font-medium text-white">
                           {nameParts[1] || 'Nimnadee'}
                         </p>
-                        <p className="font-sinhala text-xs sm:text-sm font-semibold text-rose-300">
+                        <p className="font-sinhala text-xs sm:text-sm font-semibold text-rose-200">
                           {sinhalaParts[1] || 'නිම්නාදී'}
                         </p>
                       </div>
@@ -299,9 +299,9 @@ export default function InviteClientView({
                         setCurrentTab('details');
                         window.scrollTo({ top: 0, behavior: 'smooth' });
                       }}
-                      className="w-full rounded-full py-3.5 sm:py-4 text-xs font-semibold tracking-[0.2em] uppercase text-white shadow-xl transition hover:brightness-110 active:scale-98 cursor-pointer"
+                      className="w-full rounded-full py-3.5 sm:py-4 text-xs font-semibold tracking-[0.2em] uppercase text-white shadow-lg transition hover:brightness-110 active:scale-98 cursor-pointer"
                       style={{
-                        background: 'linear-gradient(135deg, #E11D48 0%, #9F1239 50%, #4C0519 100%)',
+                        background: 'linear-gradient(135deg, #E11D48 0%, #BE123C 50%, #881337 100%)',
                       }}
                     >
                       VIEW WEDDING DETAILS →
@@ -322,12 +322,12 @@ export default function InviteClientView({
                 >
                   {/* Couple Circular Portrait & Names */}
                   <div className="text-center pt-2 pb-1">
-                    <div className="relative mx-auto mb-3 sm:mb-4 flex h-20 w-20 sm:h-24 sm:w-24 items-center justify-center overflow-hidden rounded-full border-2 border-rose-500 shadow-[0_0_25px_rgba(225,29,72,0.4)]">
+                    <div className="relative mx-auto mb-3 sm:mb-4 flex h-20 w-20 sm:h-24 sm:w-24 items-center justify-center overflow-hidden rounded-full border-2 border-rose-400 shadow-[0_4px_25px_rgba(225,29,72,0.2)] bg-white">
                       <img
                         src={
                           event.couple_avatar_url ||
                           event.hero_image_url ||
-                          'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=400&q=80'
+                          '/images/couple.webp'
                         }
                         alt="Couple"
                         className="h-full w-full object-cover"
@@ -335,45 +335,45 @@ export default function InviteClientView({
                     </div>
 
                     <div className="mb-2">
-                      <h1 className="font-playfair italic text-3xl sm:text-4xl text-white">
+                      <h1 className="font-playfair italic text-3xl sm:text-4xl text-stone-900 font-medium">
                         {nameParts[0]}
                       </h1>
-                      <span className="font-playfair italic text-lg sm:text-xl text-rose-400 my-0.5 block">&</span>
-                      <h1 className="font-playfair italic text-3xl sm:text-4xl text-white">
+                      <span className="font-playfair italic text-lg sm:text-xl text-rose-500 my-0.5 block">&</span>
+                      <h1 className="font-playfair italic text-3xl sm:text-4xl text-stone-900 font-medium">
                         {nameParts[1]}
                       </h1>
 
                       {/* Sinhala Couple Typography */}
-                      <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-rose-500/40 bg-rose-950/40 px-3.5 sm:px-4 py-1">
-                        <span className="font-sinhala text-base sm:text-lg font-bold text-rose-100 tracking-wider">
+                      <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-rose-200 bg-rose-50/90 px-3.5 sm:px-4 py-1 shadow-xs">
+                        <span className="font-sinhala text-base sm:text-lg font-bold text-rose-900 tracking-wider">
                           {sinhalaCoupleName}
                         </span>
                       </div>
                     </div>
 
-                    <p className="text-xs text-rose-200/80 mt-2.5 sm:mt-3 leading-relaxed max-w-xs mx-auto">
+                    <p className="text-xs text-stone-600 mt-2.5 sm:mt-3 leading-relaxed max-w-xs mx-auto">
                       Together with their families, request the pleasure of your company.
                     </p>
                   </div>
 
                   {/* Parents Card */}
-                  <div className="olive-card p-4 sm:p-5 max-w-sm mx-auto shadow-xl space-y-3 sm:space-y-4">
+                  <div className="olive-card p-4 sm:p-5 max-w-sm mx-auto shadow-md space-y-3 sm:space-y-4">
                     <div>
-                      <p className="text-[9px] font-semibold uppercase tracking-[0.25em] text-rose-400 mb-1">
+                      <p className="text-[9px] font-semibold uppercase tracking-[0.25em] text-rose-600 mb-1">
                         Beloved Son Of
                       </p>
-                      <p className="font-playfair italic text-sm sm:text-base text-white">
+                      <p className="font-playfair italic text-sm sm:text-base text-stone-900 font-medium">
                         {event.beloved_son_of || 'Rathnasiri & Karunawathi'}
                       </p>
                     </div>
 
-                    <div className="h-px bg-rose-900/30" />
+                    <div className="h-px bg-rose-100" />
 
                     <div>
-                      <p className="text-[9px] font-semibold uppercase tracking-[0.25em] text-rose-400 mb-1">
+                      <p className="text-[9px] font-semibold uppercase tracking-[0.25em] text-rose-600 mb-1">
                         Beloved Daughter Of
                       </p>
-                      <p className="font-playfair italic text-sm sm:text-base text-white">
+                      <p className="font-playfair italic text-sm sm:text-base text-stone-900 font-medium">
                         {event.beloved_daughter_of || 'Gamini & Madhuka'}
                       </p>
                     </div>
@@ -415,11 +415,11 @@ export default function InviteClientView({
 
                   {/* Note / Theme Card (Rendered only if text_note is configured) */}
                   {Boolean(event.text_note && event.text_note.trim() !== '') && (
-                    <div className="olive-card p-4 sm:p-5 max-w-sm mx-auto shadow-xl">
-                      <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-rose-400 mb-1.5">
+                    <div className="olive-card p-4 sm:p-5 max-w-sm mx-auto shadow-md">
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-rose-600 mb-1.5">
                         {event.title_note || 'Note'}
                       </p>
-                      <p className="text-xs font-medium text-white leading-relaxed">
+                      <p className="text-xs font-medium text-stone-800 leading-relaxed">
                         {event.text_note}
                       </p>
                     </div>
@@ -427,7 +427,7 @@ export default function InviteClientView({
 
                   {/* Photo Gallery Lightbox */}
                   <div className="max-w-sm mx-auto pt-1">
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-rose-400 text-center mb-2.5 sm:mb-3">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-rose-600 text-center mb-2.5 sm:mb-3">
                       Gallery Memories
                     </p>
                     <LightboxGallery photos={gallery} />
@@ -444,17 +444,17 @@ export default function InviteClientView({
 
                   {/* Footer */}
                   <footer className="pt-6 pb-6 text-center text-xs">
-                    <div className="h-px w-20 mx-auto bg-gradient-to-r from-transparent via-rose-500/40 to-transparent mb-5" />
-                    <p className="font-playfair italic text-xs sm:text-sm text-rose-200/80 mb-1">
+                    <div className="h-px w-20 mx-auto bg-gradient-to-r from-transparent via-rose-300 to-transparent mb-5" />
+                    <p className="font-playfair italic text-xs sm:text-sm text-stone-600 mb-1">
                       Thank you for being part of our journey.
                     </p>
-                    <p className="font-playfair italic text-xs text-rose-400 mb-1">
+                    <p className="font-playfair italic text-xs text-rose-600 mb-1">
                       With love,
                     </p>
-                    <p className="font-playfair italic text-base sm:text-lg text-white">
+                    <p className="font-playfair italic text-base sm:text-lg text-stone-900 font-medium">
                       {event.couple_names}
                     </p>
-                    <p className="font-sinhala text-sm sm:text-base font-bold text-rose-300 mt-1 mb-3">
+                    <p className="font-sinhala text-sm sm:text-base font-bold text-rose-800 mt-1 mb-3">
                       {sinhalaCoupleName}
                     </p>
                     <div className="text-xl mb-6">🌹</div>
@@ -466,7 +466,7 @@ export default function InviteClientView({
                         setCurrentTab('story');
                         window.scrollTo({ top: 0, behavior: 'smooth' });
                       }}
-                      className="text-[11px] underline text-rose-400 hover:text-rose-300 transition cursor-pointer"
+                      className="text-[11px] underline text-rose-600 hover:text-rose-800 transition cursor-pointer"
                     >
                       Replay invitation
                     </button>

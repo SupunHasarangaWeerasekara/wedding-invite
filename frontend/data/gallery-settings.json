@@ -1,22 +1,32 @@
 [
   {
-    "image_url": "/images/couple.jpeg",
+    "image_url": "/images/1.webp",
     "caption": "Winod & Nimnadee",
     "display_order": 1
   },
   {
-    "image_url": "/images/boy.jpeg",
-    "caption": "Winod (Groom)",
+    "image_url": "/images/2.webp",
+    "caption": "Together Forever",
     "display_order": 2
   },
   {
-    "image_url": "/images/girl.jpeg",
-    "caption": "Nimnadee (Bride)",
+    "image_url": "/images/3.webp",
+    "caption": "Our Special Moments",
     "display_order": 3
   },
   {
-    "image_url": "/images/couple-2.jpeg",
+    "image_url": "/images/couple.webp",
     "caption": "Winod & Nimnadee",
     "display_order": 4
+  },
+  {
+    "image_url": "/images/boy.webp",
+    "caption": "Winod (Groom)",
+    "display_order": 5
+  },
+  {
+    "image_url": "/images/girl.webp",
+    "caption": "Nimnadee (Bride)",
+    "display_order": 6
   }
 ]

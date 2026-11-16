@@ -38,7 +38,7 @@ export default function LightboxGallery({ photos }: LightboxGalleryProps) {
             key={photo.id || idx}
             whileHover={{ scale: 1.02 }}
             onClick={() => openModal(idx)}
-            className="group relative cursor-pointer overflow-hidden rounded-2xl border border-rose-500/25 bg-[#16080C] shadow-md aspect-4/5"
+            className="group relative cursor-pointer overflow-hidden rounded-2xl border border-rose-200/80 bg-white shadow-md aspect-4/5"
           >
             <img
               src={photo.image_url}
@@ -47,7 +47,7 @@ export default function LightboxGallery({ photos }: LightboxGalleryProps) {
               loading="lazy"
             />
             {/* Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0A0406]/90 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex items-end p-2 sm:p-2.5">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex items-end p-2 sm:p-2.5">
               <p className="text-[10px] text-white font-medium">
                 {photo.caption}
               </p>

@@ -4,17 +4,17 @@ import { defaultEvent } from '@/lib/dummy-data';
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen bg-[#0A0406] text-[#FFF1F2] flex flex-col justify-between overflow-hidden">
+    <div className="relative min-h-screen bg-[#FAFAFA] text-[#1F2937] flex flex-col justify-between overflow-hidden">
       {/* Navigation */}
-      <header className="border-b border-rose-900/30 py-4 px-6 bg-[#120509]/85 backdrop-blur-md">
+      <header className="border-b border-rose-100 py-4 px-6 bg-white/90 backdrop-blur-md shadow-xs">
         <div className="max-w-5xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-2">
             <span className="text-xl">💍</span>
             <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2">
-              <span className="font-playfair italic text-lg text-white tracking-wide">
+              <span className="font-playfair italic text-lg text-stone-900 font-medium tracking-wide">
                 {defaultEvent.couple_names}
               </span>
-              <span className="font-sinhala text-xs text-rose-300 font-semibold">
+              <span className="font-sinhala text-xs text-rose-600 font-semibold">
                 ({defaultEvent.couple_names_si || 'විනෝද් සහ නිම්නාදී'})
               </span>
             </div>
@@ -22,9 +22,9 @@ export default function Home() {
 
           <Link
             href="/admin"
-            className="flex items-center gap-1.5 rounded-full border border-rose-500/40 px-3.5 py-1.5 text-xs font-semibold text-rose-300 hover:bg-rose-600 hover:text-white transition shadow-sm"
+            className="flex items-center gap-1.5 rounded-full border border-rose-200 px-3.5 py-1.5 text-xs font-semibold text-rose-700 hover:bg-rose-600 hover:text-white transition shadow-xs"
           >
-            <ShieldCheck className="h-4 w-4 text-rose-400" />
+            <ShieldCheck className="h-4 w-4 text-rose-500" />
             <span>Couple Admin</span>
           </Link>
         </div>
@@ -32,31 +32,31 @@ export default function Home() {
 
       {/* Hero */}
       <main className="max-w-2xl mx-auto px-4 py-16 text-center flex-1 flex flex-col justify-center">
-        <div className="inline-flex items-center justify-center gap-2 rounded-full bg-rose-950/60 border border-rose-500/30 px-4 py-1.5 text-[10px] font-semibold uppercase tracking-[0.3em] text-rose-300 mb-6 mx-auto shadow-inner">
-          <Sparkles className="h-3.5 w-3.5 text-rose-400" />
+        <div className="inline-flex items-center justify-center gap-2 rounded-full bg-rose-50 border border-rose-200 px-4 py-1.5 text-[10px] font-semibold uppercase tracking-[0.3em] text-rose-700 mb-6 mx-auto shadow-xs">
+          <Sparkles className="h-3.5 w-3.5 text-rose-500" />
           <span>Digital Wedding Invitation</span>
-          <Sparkles className="h-3.5 w-3.5 text-rose-400" />
+          <Sparkles className="h-3.5 w-3.5 text-rose-500" />
         </div>
 
-        <h1 className="font-playfair italic text-5xl md:text-7xl font-normal text-white tracking-tight leading-tight">
+        <h1 className="font-playfair italic text-5xl md:text-7xl font-normal text-stone-900 tracking-tight leading-tight">
           {defaultEvent.couple_names}
         </h1>
 
         {/* Sinhala Couple Typography Badge */}
-        <div className="mt-3 inline-flex items-center justify-center gap-2 rounded-full border border-rose-500/40 bg-rose-950/40 px-5 py-1.5 mx-auto shadow-[0_0_20px_rgba(225,29,72,0.25)]">
-          <span className="text-rose-400 text-xs">✦</span>
-          <span className="font-sinhala text-xl md:text-2xl font-bold text-rose-100 tracking-wider">
+        <div className="mt-3 inline-flex items-center justify-center gap-2 rounded-full border border-rose-200 bg-rose-50/90 px-5 py-1.5 mx-auto shadow-xs">
+          <span className="text-rose-500 text-xs">✦</span>
+          <span className="font-sinhala text-xl md:text-2xl font-bold text-rose-900 tracking-wider">
             {defaultEvent.couple_names_si || 'විනෝද් සහ නිම්නාදී'}
           </span>
-          <span className="text-rose-400 text-xs">✦</span>
+          <span className="text-rose-500 text-xs">✦</span>
         </div>
 
-        <p className="mt-4 font-playfair italic text-lg text-rose-300">
+        <p className="mt-4 font-playfair italic text-lg text-rose-700 font-medium">
           Sunday, November 29, 2026 • {defaultEvent.venue_name}
         </p>
 
-        <p className="mt-4 text-xs md:text-sm text-rose-200/80 leading-relaxed max-w-lg mx-auto">
-          Experience our royal crimson red & obsidian black luxury wedding invitation, complete with animated cover reveal, couple story timeline, interactive calendar, venue map, and personalized RSVP.
+        <p className="mt-4 text-xs md:text-sm text-stone-600 leading-relaxed max-w-lg mx-auto">
+          Experience our royal luxury wedding invitation, complete with animated cover reveal, couple story timeline, interactive calendar, venue map, and personalized RSVP.
         </p>
 
         {/* Demo CTAs */}
@@ -75,17 +75,17 @@ export default function Home() {
 
           <Link
             href="/admin"
-            className="flex w-full sm:w-auto items-center justify-center gap-2 rounded-full border border-rose-500/30 bg-[#18090E] px-6 py-3.5 text-xs font-semibold tracking-wider text-rose-200 hover:bg-rose-900/40 hover:text-white transition shadow-md"
+            className="flex w-full sm:w-auto items-center justify-center gap-2 rounded-full border border-rose-200 bg-white px-6 py-3.5 text-xs font-semibold tracking-wider text-stone-700 hover:bg-rose-50 hover:text-rose-800 transition shadow-xs"
           >
-            <ShieldCheck className="h-4 w-4 text-rose-400" />
+            <ShieldCheck className="h-4 w-4 text-rose-500" />
             <span>Go to Admin Portal</span>
           </Link>
         </div>
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-rose-900/30 py-4 text-center text-xs text-rose-400/80">
-        <p>Digital Wedding Invitation System &bull; Sanjaya & Gagani (සංජය සහ ගගනි)</p>
+      <footer className="border-t border-rose-100 py-4 text-center text-xs text-stone-500">
+        <p>Digital Wedding Invitation System &bull; Winod & Nimnadee (විනෝද් සහ නිම්නාදී)</p>
       </footer>
     </div>
   );

@@ -21,8 +21,8 @@ export default function ScheduleTimeline({
   );
 
   return (
-    <div className="olive-card p-5 max-w-sm mx-auto shadow-xl">
-      <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-rose-400 mb-4">
+    <div className="olive-card p-5 max-w-sm mx-auto shadow-md">
+      <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-rose-600 mb-4">
         {title}
       </p>
 
@@ -32,16 +32,16 @@ export default function ScheduleTimeline({
           <div className="flex items-center justify-between py-2">
             <div className="flex items-center gap-2.5">
               <span className="text-lg">💍</span>
-              <span className="font-playfair italic text-base text-white">
+              <span className="font-playfair italic text-base text-stone-900 font-medium">
                 Poruwa Ceremony
               </span>
             </div>
-            <span className="font-semibold text-sm text-rose-300 tracking-wide">
+            <span className="font-semibold text-sm text-rose-600 tracking-wide">
               {poruwaTime}
             </span>
           </div>
 
-          <div className="my-2.5 h-px bg-rose-900/30" />
+          <div className="my-2.5 h-px bg-rose-100" />
         </>
       )}
 
@@ -49,11 +49,11 @@ export default function ScheduleTimeline({
       <div className="flex items-center justify-between py-2">
         <div className="flex items-center gap-2.5">
           <span className="text-lg">🥂</span>
-          <span className="font-playfair italic text-base text-white">
+          <span className="font-playfair italic text-base text-stone-900 font-medium">
             Reception
           </span>
         </div>
-        <span className="font-semibold text-sm text-rose-300 tracking-wide">
+        <span className="font-semibold text-sm text-rose-600 tracking-wide">
           {receptionTime || '06:00 PM'}
         </span>
       </div>

@@ -20,7 +20,7 @@ export default function StickyBottomNav() {
       className="fixed bottom-0 left-0 right-0 z-30 p-2 sm:p-3 pointer-events-none"
       style={{ paddingBottom: 'max(0.5rem, env(safe-area-inset-bottom, 0px))' }}
     >
-      <nav className="pointer-events-auto mx-auto flex max-w-sm items-center justify-between gap-1 rounded-full border border-rose-500/25 bg-[#16080C]/95 px-2 py-1.5 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.8)] backdrop-blur-xl">
+      <nav className="pointer-events-auto mx-auto flex max-w-sm items-center justify-between gap-1 rounded-full border border-rose-200 bg-white/95 px-2 py-1.5 shadow-[0_8px_30px_rgba(0,0,0,0.12)] backdrop-blur-xl">
         <div className="flex items-center gap-0.5">
           {navItems.map((item) => {
             const Icon = item.icon;
@@ -28,7 +28,7 @@ export default function StickyBottomNav() {
               <button
                 key={item.id}
                 onClick={() => scrollTo(item.id)}
-                className="flex flex-col items-center gap-0.5 rounded-full px-2.5 sm:px-3.5 py-1 text-[10px] sm:text-[11px] font-medium text-rose-300/70 transition-all duration-200 hover:bg-white/10 hover:text-white active:scale-95 cursor-pointer"
+                className="flex flex-col items-center gap-0.5 rounded-full px-2.5 sm:px-3.5 py-1 text-[10px] sm:text-[11px] font-medium text-stone-600 transition-all duration-200 hover:bg-rose-50 hover:text-rose-700 active:scale-95 cursor-pointer"
               >
                 <Icon className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                 <span>{item.label}</span>
