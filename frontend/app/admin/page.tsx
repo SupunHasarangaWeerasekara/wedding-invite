@@ -1218,6 +1218,23 @@ export default function AdminPage() {
                       onClick={() => {
                         if (isPreviewPlaying && previewAudioRef.current) previewAudioRef.current.pause();
                         setIsPreviewPlaying(false);
+                        setEventSettings({ ...eventSettings, music_url: '/music/beautiful-in-white.mp3' });
+                      }}
+                      className={`rounded-xl px-3 py-1.5 text-xs font-medium border transition cursor-pointer ${
+                        eventSettings.music_url?.includes('beautiful-in-white')
+                          ? 'border-rose-500 bg-rose-500/15 text-rose-300 font-bold'
+                          : isDark
+                          ? 'border-rose-900/30 bg-[#22131A] text-rose-200/70 hover:text-white'
+                          : 'border-gray-200 bg-gray-50 text-gray-700 hover:bg-gray-100'
+                      }`}
+                    >
+                      🎵 Westlife - Beautiful In White (/music/beautiful-in-white.mp3)
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        if (isPreviewPlaying && previewAudioRef.current) previewAudioRef.current.pause();
+                        setIsPreviewPlaying(false);
                         setEventSettings({ ...eventSettings, music_url: '/music/wedding.mp3' });
                       }}
                       className={`rounded-xl px-3 py-1.5 text-xs font-medium border transition cursor-pointer ${
@@ -1228,7 +1245,7 @@ export default function AdminPage() {
                           : 'border-gray-200 bg-gray-50 text-gray-700 hover:bg-gray-100'
                       }`}
                     >
-                      🎵 Romantic Wedding Melodic Theme (/music/wedding.mp3)
+                      🎵 Classic Wedding Melody (/music/wedding.mp3)
                     </button>
                   </div>
                 </div>

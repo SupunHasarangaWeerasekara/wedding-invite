@@ -1,26 +1,22 @@
 [
   {
-    "id": "83f83ea0-e434-4b6e-a6f3-aaf5685932a1",
-    "event_id": "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d",
     "image_url": "/images/couple.jpeg",
     "caption": "Winod & Nimnadee",
-    "display_order": 1,
-    "created_at": "2026-11-16T10:06:45.011581+00:00"
+    "display_order": 1
   },
   {
-    "id": "d758bbc0-4367-4fdf-8b66-1ef9c764dc41",
-    "event_id": "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d",
     "image_url": "/images/boy.jpeg",
     "caption": "Winod (Groom)",
-    "display_order": 2,
-    "created_at": "2026-11-16T10:06:45.011581+00:00"
+    "display_order": 2
   },
   {
-    "id": "a1ac07db-9390-4c93-9c1a-0c86a0530155",
-    "event_id": "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d",
     "image_url": "/images/girl.jpeg",
     "caption": "Nimnadee (Bride)",
-    "display_order": 3,
-    "created_at": "2026-11-16T10:06:45.011581+00:00"
+    "display_order": 3
+  },
+  {
+    "image_url": "/images/couple-2.jpeg",
+    "caption": "Winod & Nimnadee",
+    "display_order": 4
   }
 ]

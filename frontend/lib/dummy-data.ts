@@ -11,7 +11,7 @@ export const defaultEvent: WeddingEvent = {
   poruwa_time: '',
   reception_time: '06:00 PM',
   theme_id: 'crimson_black',
-  music_url: '/music/wedding.mp3',
+  music_url: '/music/beautiful-in-white.mp3',
   font_family: 'Playfair Display',
   font_size_scale: 'normal',
   hero_image_url: '/images/couple.jpeg',
@@ -85,5 +85,12 @@ export const sampleGallery: GalleryPhoto[] = [
     image_url: '/images/girl.jpeg',
     caption: 'Nimnadee (Bride)',
     display_order: 3,
+  },
+  {
+    id: 'p-4',
+    event_id: defaultEvent.id,
+    image_url: '/images/couple-2.jpeg',
+    caption: 'Winod & Nimnadee',
+    display_order: 4,
   },
 ];
