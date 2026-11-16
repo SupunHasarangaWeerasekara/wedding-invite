@@ -32,13 +32,13 @@ export default function InviteClientView({
   const [recentWishes, setRecentWishes] = useState<{ name: string; wish: string; date: string }[]>([]);
   const audioRef = React.useRef<HTMLAudioElement | null>(null);
 
-  // Initialize and preload audio
+  // Initialize audio with preload='none' to avoid bandwidth contention on mobile
   useEffect(() => {
     const audioSrc = event.music_url || '/music/wedding.mp3';
     const audio = new Audio(audioSrc);
     audio.loop = true;
     audio.volume = 0.5;
-    audio.preload = 'auto';
+    audio.preload = 'none';
     audioRef.current = audio;
 
     return () => {
@@ -205,6 +205,7 @@ export default function InviteClientView({
                         'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=80'
                       }
                       alt={event.couple_names}
+                      decoding="async"
                       className="h-[340px] sm:h-[400px] w-full object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0A0406] via-[#0A0406]/30 to-transparent" />
@@ -250,6 +251,8 @@ export default function InviteClientView({
                           'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80'
                         }
                         alt="Groom"
+                        loading="lazy"
+                        decoding="async"
                         className="h-44 sm:h-52 w-full object-cover"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#0A0406] via-transparent to-transparent" />
@@ -274,6 +277,8 @@ export default function InviteClientView({
                           '/images/girl.jpeg'
                         }
                         alt="Bride"
+                        loading="lazy"
+                        decoding="async"
                         className="h-44 sm:h-52 w-full object-cover"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#0A0406] via-transparent to-transparent" />

@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { cache } from 'react';
 import { supabase, isSupabaseConfigured } from '@/lib/supabase';
 import { sampleGuests } from '@/lib/dummy-data';
 import { getEventSettings, getGallery } from '@/lib/event-store';
@@ -12,10 +13,10 @@ interface PageProps {
   params: Promise<{ code: string }>;
 }
 
-async function getGuestData(code: string): Promise<{
+const getGuestData = cache(async (code: string): Promise<{
   guest: Guest | null;
   event: WeddingEvent;
-}> {
+}> => {
   const currentEvent = getEventSettings();
 
   if (isSupabaseConfigured && supabase) {
@@ -52,7 +53,7 @@ async function getGuestData(code: string): Promise<{
     guest: fallbackGuest,
     event: currentEvent,
   };
-}
+});
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { code } = await params;

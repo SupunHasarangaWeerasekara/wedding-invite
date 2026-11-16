@@ -2,12 +2,20 @@
 
 import React, { useMemo, useState, useEffect } from 'react';
 
-export default function LeafParticles({ count = 48 }: { count?: number }) {
+export default function LeafParticles({ count: propCount }: { count?: number }) {
   const [mounted, setMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     setMounted(true);
+    setIsMobile(window.innerWidth < 768);
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize, { passive: true });
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  // 18 particles on mobile, 30 on desktop for 60fps buttery smoothness
+  const count = propCount ?? (isMobile ? 18 : 30);
 
   const hearts = useMemo(() => {
     const colors = [
@@ -22,16 +30,14 @@ export default function LeafParticles({ count = 48 }: { count?: number }) {
     ];
 
     return Array.from({ length: count }, (_, i) => {
-      // Even distribution across mobile & desktop viewports (2% to 98%)
       const baseLeft = (i * 96) / count + 2;
-      const sway = ((i * 19) % 7) - 3;
+      const sway = ((i * 17) % 7) - 3;
       const left = Math.max(1, Math.min(99, baseLeft + sway));
-      const duration = 4.2 + ((i * 1.35) % 4.8); // 4.2s to 9.0s
-      const delay = -((i * 0.42) % 8.5); // Negative delay ensures rain is fully falling immediately
-      const size = 11 + (i % 6) * 3.5; // 11px to 28.5px
-      const opacity = 0.45 + (i % 5) * 0.12; // 0.45 to 0.93
+      const duration = 5.2 + ((i * 1.35) % 4.5); // 5.2s to 9.7s
+      const delay = -((i * 0.45) % 9.0); // Negative delay so screen is immediately filled
+      const size = 11 + (i % 5) * 3; // 11px to 23px
+      const opacity = 0.45 + (i % 5) * 0.11; // 0.45 to 0.89
       const color = colors[i % colors.length];
-      const hasGlow = i % 3 === 0;
 
       return {
         id: i,
@@ -41,9 +47,6 @@ export default function LeafParticles({ count = 48 }: { count?: number }) {
         size: Math.round(size),
         opacity: Number(opacity.toFixed(2)),
         color,
-        filter: hasGlow
-          ? 'drop-shadow(0 0 8px rgba(225, 29, 72, 0.85)) drop-shadow(0 0 2px rgba(255, 241, 242, 0.9))'
-          : 'drop-shadow(0 0 3px rgba(244, 63, 94, 0.45))',
       };
     });
   }, [count]);
@@ -63,62 +66,26 @@ export default function LeafParticles({ count = 48 }: { count?: number }) {
         width: '100vw',
         height: '100vh',
         pointerEvents: 'none',
+        contain: 'strict',
       }}
     >
       <style>{`
-        @keyframes heartFallAnim {
+        @keyframes heartFallSmooth {
           0% {
-            transform: translate3d(0, -50px, 0) rotate(-16deg) scale(0.85);
+            transform: translate3d(0, -40px, 0) rotate(-14deg);
             opacity: 0;
           }
-          10% {
-            opacity: 0.95;
-            transform: translate3d(10px, 12vh, 0) rotate(8deg) scale(1);
+          12% {
+            opacity: 0.9;
           }
-          30% {
-            transform: translate3d(-14px, 32vh, 0) rotate(-12deg) scale(0.95);
+          50% {
+            transform: translate3d(14px, 52vh, 0) rotate(12deg);
           }
-          55% {
-            opacity: 0.95;
-            transform: translate3d(16px, 55vh, 0) rotate(14deg) scale(1.05);
-          }
-          75% {
-            transform: translate3d(-10px, 75vh, 0) rotate(-6deg) scale(0.95);
-          }
-          90% {
+          88% {
             opacity: 0.85;
-            transform: translate3d(12px, 90vh, 0) rotate(10deg) scale(1);
           }
           100% {
-            transform: translate3d(18px, 108vh, 0) rotate(22deg) scale(0.75);
-            opacity: 0;
-          }
-        }
-        @-webkit-keyframes heartFallAnim {
-          0% {
-            -webkit-transform: translate3d(0, -50px, 0) rotate(-16deg) scale(0.85);
-            opacity: 0;
-          }
-          10% {
-            opacity: 0.95;
-            -webkit-transform: translate3d(10px, 12vh, 0) rotate(8deg) scale(1);
-          }
-          30% {
-            -webkit-transform: translate3d(-14px, 32vh, 0) rotate(-12deg) scale(0.95);
-          }
-          55% {
-            opacity: 0.95;
-            -webkit-transform: translate3d(16px, 55vh, 0) rotate(14deg) scale(1.05);
-          }
-          75% {
-            -webkit-transform: translate3d(-10px, 75vh, 0) rotate(-6deg) scale(0.95);
-          }
-          90% {
-            opacity: 0.85;
-            -webkit-transform: translate3d(12px, 90vh, 0) rotate(10deg) scale(1);
-          }
-          100% {
-            -webkit-transform: translate3d(18px, 108vh, 0) rotate(22deg) scale(0.75);
+            transform: translate3d(-10px, 106vh, 0) rotate(22deg);
             opacity: 0;
           }
         }
@@ -131,21 +98,23 @@ export default function LeafParticles({ count = 48 }: { count?: number }) {
             top: 0,
             left: h.left,
             opacity: h.opacity,
-            filter: h.filter,
-            animation: `heartFallAnim ${h.duration} linear infinite ${h.delay}`,
-            WebkitAnimation: `heartFallAnim ${h.duration} linear infinite ${h.delay}`,
+            animation: `heartFallSmooth ${h.duration} linear infinite ${h.delay}`,
+            WebkitAnimation: `heartFallSmooth ${h.duration} linear infinite ${h.delay}`,
             pointerEvents: 'none',
-            willChange: 'transform, opacity',
+            willChange: 'transform',
+            transform: 'translateZ(0)',
           }}
         >
-          {/* Glowing Romantic Falling SVG Heart */}
           <svg
             width={h.size}
             height={h.size}
             viewBox="0 0 24 24"
             fill={h.color}
             xmlns="http://www.w3.org/2000/svg"
-            style={{ display: 'block' }}
+            style={{
+              display: 'block',
+              filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.35))',
+            }}
           >
             <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
           </svg>
