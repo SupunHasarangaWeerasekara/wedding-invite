@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import { Guest, WeddingEvent, GalleryPhoto } from '@/lib/types';
 import EnvelopeCover from '@/components/invite/EnvelopeCover';
-import LeafParticles from '@/components/invite/LeafParticles';
 import MusicPlayer from '@/components/invite/MusicPlayer';
 import CountdownTimer from '@/components/invite/CountdownTimer';
 import FixedCalendar from '@/components/invite/FixedCalendar';
@@ -117,9 +116,6 @@ export default function InviteClientView({
 
   return (
     <>
-      {/* Falling Romantic Heart Rain Shower - ALWAYS active, continuous everywhere */}
-      <LeafParticles count={50} />
-
       {!isOpened ? (
         <EnvelopeCover
           guestName={guest.name}
@@ -190,10 +186,10 @@ export default function InviteClientView({
                 ======================================================== */
                 <motion.div
                   key="story"
-                  initial={{ opacity: 0, x: -15 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -15 }}
-                  transition={{ duration: 0.35 }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.15 }}
                   className="mx-auto max-w-md px-3.5 sm:px-4 pt-3 pb-8"
                   id="story"
                 >
@@ -318,10 +314,10 @@ export default function InviteClientView({
                 ======================================================== */
                 <motion.div
                   key="details"
-                  initial={{ opacity: 0, x: 15 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 15 }}
-                  transition={{ duration: 0.35 }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.15 }}
                   className="mx-auto max-w-md px-3.5 sm:px-4 pt-3 pb-12 space-y-4 sm:space-y-5"
                 >
                   {/* Couple Circular Portrait & Names */}

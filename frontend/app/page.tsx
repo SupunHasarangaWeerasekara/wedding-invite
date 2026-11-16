@@ -1,13 +1,10 @@
 import Link from 'next/link';
 import { Sparkles, Mail, ShieldCheck, ArrowRight, Heart } from 'lucide-react';
 import { defaultEvent } from '@/lib/dummy-data';
-import LeafParticles from '@/components/invite/LeafParticles';
 
 export default function Home() {
   return (
     <div className="relative min-h-screen bg-[#0A0406] text-[#FFF1F2] flex flex-col justify-between overflow-hidden">
-      {/* Falling Hearts */}
-      <LeafParticles count={16} />
       {/* Navigation */}
       <header className="border-b border-rose-900/30 py-4 px-6 bg-[#120509]/85 backdrop-blur-md">
         <div className="max-w-5xl mx-auto flex items-center justify-between">

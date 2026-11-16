@@ -23,7 +23,6 @@ export default function EnvelopeCover({
   onPlayMusic,
 }: EnvelopeCoverProps) {
   const [isOpening, setIsOpening] = useState(false);
-  const [showHearts, setShowHearts] = useState(false);
 
   const nameParts = coupleNames.split('&').map((n) => n.trim());
 
@@ -35,7 +34,7 @@ export default function EnvelopeCover({
 
     if (isOpening) return;
 
-    // 1. Immediately trigger music inside user's gesture to guarantee browser audio permission
+    // Immediately trigger music inside user's gesture to guarantee browser audio permission
     if (onPlayMusic) {
       try {
         onPlayMusic();
@@ -43,13 +42,8 @@ export default function EnvelopeCover({
         console.warn('Audio play trigger error:', err);
       }
     }
-    setShowHearts(true);
     setIsOpening(true);
-
-    // Transition smoothly after heart burst
-    setTimeout(() => {
-      onOpen();
-    }, 400);
+    onOpen();
   };
 
   return (
@@ -58,32 +52,10 @@ export default function EnvelopeCover({
         <motion.div
           key="envelope-cover"
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0, scale: 1.03 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
           className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#0A0406] text-[#FFF1F2] px-4 py-8 select-none overflow-y-auto"
         >
-          {/* Heart burst when clicked */}
-          {showHearts && (
-            <div className="absolute inset-0 pointer-events-none z-50 flex items-center justify-center">
-              {[...Array(12)].map((_, i) => (
-                <motion.span
-                  key={i}
-                  initial={{ scale: 0, opacity: 1, x: 0, y: 0 }}
-                  animate={{
-                    scale: [0, 1.4, 0.8],
-                    opacity: [1, 0.9, 0],
-                    x: Math.sin((i * 30 * Math.PI) / 180) * 160 + (Math.random() * 20),
-                    y: Math.cos((i * 30 * Math.PI) / 180) * 160 - 30,
-                  }}
-                  transition={{ duration: 0.85, ease: 'easeOut' }}
-                  className="absolute text-2xl text-rose-500"
-                >
-                  ♥
-                </motion.span>
-              ))}
-            </div>
-          )}
-
           {/* Center Content Box - perfectly centered & responsive for all mobile viewports */}
           <div className="relative z-20 my-auto flex w-full max-w-sm flex-col items-center text-center">
             {/* Top red sparkle with fading lines */}
