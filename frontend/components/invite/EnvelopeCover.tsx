@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 interface EnvelopeCoverProps {
   guestName: string;
   coupleNames: string;
+  coupleNamesSi?: string;
   venueName?: string;
   weddingDateStr?: string;
   onOpen: () => void;
@@ -15,6 +16,7 @@ interface EnvelopeCoverProps {
 export default function EnvelopeCover({
   guestName,
   coupleNames,
+  coupleNamesSi,
   venueName = 'Shangri-La Hotel Colombo',
   weddingDateStr = 'Saturday, December 18, 2026',
   onOpen,
@@ -25,20 +27,29 @@ export default function EnvelopeCover({
 
   const nameParts = coupleNames.split('&').map((n) => n.trim());
 
-  const handleOpenClick = () => {
+  const handleOpenClick = (e?: React.MouseEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
+    if (isOpening) return;
+
     // 1. Immediately trigger music inside user's gesture to guarantee browser audio permission
     if (onPlayMusic) {
       try {
         onPlayMusic();
-      } catch (e) {
-        console.warn('Audio play trigger error:', e);
+      } catch (err) {
+        console.warn('Audio play trigger error:', err);
       }
     }
     setShowHearts(true);
     setIsOpening(true);
+
+    // Transition smoothly after heart burst
     setTimeout(() => {
       onOpen();
-    }, 900);
+    }, 400);
   };
 
   return (
@@ -111,7 +122,7 @@ export default function EnvelopeCover({
               <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-rose-500/40 bg-rose-950/50 px-3.5 sm:px-4 py-1.5 shadow-[0_0_15px_rgba(225,29,72,0.25)]">
                 <span className="text-rose-400 text-xs">✦</span>
                 <span className="font-sinhala text-base sm:text-lg md:text-xl font-bold text-rose-100 tracking-wider">
-                  සංජය සහ ගගනි
+                  {coupleNamesSi || 'විනෝද් සහ නිම්නාදී'}
                 </span>
                 <span className="text-rose-400 text-xs">✦</span>
               </div>

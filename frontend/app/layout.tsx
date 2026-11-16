@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Sanjaya & Gagani (සංජය සහ ගගනි) - Wedding Invitation',
-  description: 'We warmly invite you to celebrate our wedding ceremony.',
+  title: 'Winod & Nimnadee (විනෝද් සහ නිම්නාදී) - Wedding Invitation',
+  description: 'We warmly invite you to celebrate our wedding ceremony on November 29, 2026.',
 };
 
 export default function RootLayout({

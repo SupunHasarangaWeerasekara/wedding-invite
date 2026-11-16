@@ -11,19 +11,36 @@ export async function GET(
 ) {
   try {
     const { code } = await params;
-    const event = getEventSettings();
-    const gallery = getGallery();
+    let event = getEventSettings();
+    let gallery = getGallery();
 
     let guest = null;
     let recentWishes: { name: string; wish: string; date: string }[] = [];
 
     if (isSupabaseConfigured && supabase) {
       try {
+        const { data: dbEvent } = await supabase
+          .from('events')
+          .select('*')
+          .limit(1)
+          .maybeSingle();
+        if (dbEvent) {
+          event = { ...event, ...dbEvent };
+        }
+
+        const { data: dbGallery } = await supabase
+          .from('gallery_photos')
+          .select('*')
+          .order('display_order', { ascending: true });
+        if (dbGallery && dbGallery.length > 0) {
+          gallery = dbGallery;
+        }
+
         const { data: gData } = await supabase
           .from('guests')
           .select('*')
           .eq('invite_code', code)
-          .single();
+          .maybeSingle();
         if (gData) guest = gData;
 
         // Fetch recent wishes

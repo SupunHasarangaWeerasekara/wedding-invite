@@ -1,0 +1,23 @@
+[
+  {
+    "id": "p-1",
+    "event_id": "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d",
+    "image_url": "/images/couple.jpeg",
+    "caption": "Winod & Nimnadee",
+    "display_order": 1
+  },
+  {
+    "id": "p-2",
+    "event_id": "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d",
+    "image_url": "/images/boy.jpeg",
+    "caption": "Winod (Groom)",
+    "display_order": 2
+  },
+  {
+    "id": "p-3",
+    "event_id": "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d",
+    "image_url": "/images/girl.jpeg",
+    "caption": "Nimnadee (Bride)",
+    "display_order": 3
+  }
+]

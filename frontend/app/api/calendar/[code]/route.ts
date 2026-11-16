@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { defaultEvent } from '@/lib/dummy-data';
+import { getEventSettings } from '@/lib/event-store';
+import { supabase, isSupabaseConfigured } from '@/lib/supabase';
 
 export const dynamic = 'force-dynamic';
 
@@ -9,14 +10,26 @@ export async function GET(
 ) {
   const { code } = await params;
 
-  const eventDate = new Date(defaultEvent.date_iso);
+  let currentEvent = getEventSettings();
+  if (isSupabaseConfigured && supabase) {
+    try {
+      const { data: dbEvent } = await supabase
+        .from('events')
+        .select('*')
+        .limit(1)
+        .maybeSingle();
+      if (dbEvent) currentEvent = { ...currentEvent, ...dbEvent };
+    } catch {}
+  }
+
+  const eventDate = new Date(currentEvent.date_iso);
   const startYear = eventDate.getUTCFullYear();
   const startMonth = String(eventDate.getUTCMonth() + 1).padStart(2, '0');
   const startDay = String(eventDate.getUTCDate()).padStart(2, '0');
   const startHours = String(eventDate.getUTCHours()).padStart(2, '0');
   const startMinutes = String(eventDate.getUTCMinutes()).padStart(2, '0');
 
-  const endDate = new Date(eventDate.getTime() + 6 * 60 * 60 * 1000); // 6 hours
+  const endDate = new Date(eventDate.getTime() + 5 * 60 * 60 * 1000); // 5 hours
   const endYear = endDate.getUTCFullYear();
   const endMonth = String(endDate.getUTCMonth() + 1).padStart(2, '0');
   const endDay = String(endDate.getUTCDate()).padStart(2, '0');
@@ -27,6 +40,16 @@ export async function GET(
   const dtEnd = `${endYear}${endMonth}${endDay}T${endHours}${endMinutes}00Z`;
   const now = new Date().toISOString().replace(/-|:|\.\d\d\d/g, '');
 
+  const hasPoruwa = Boolean(
+    currentEvent.poruwa_time &&
+    currentEvent.poruwa_time.trim() !== '' &&
+    currentEvent.poruwa_time !== '-'
+  );
+
+  const description = hasPoruwa
+    ? `We are delighted to celebrate our wedding with you!\\nPoruwa Ceremony: ${currentEvent.poruwa_time}\\nReception: ${currentEvent.reception_time}`
+    : `We are delighted to celebrate our wedding with you!\\nReception: ${currentEvent.reception_time}`;
+
   const icsContent = [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
@@ -34,13 +57,13 @@ export async function GET(
     'CALSCALE:GREGORIAN',
     'METHOD:PUBLISH',
     'BEGIN:VEVENT',
-    `UID:wedding-${code}-${defaultEvent.id}@weddingapp.com`,
+    `UID:wedding-${code}-${currentEvent.id}@weddingapp.com`,
     `DTSTAMP:${now}`,
     `DTSTART:${dtStart}`,
     `DTEND:${dtEnd}`,
-    `SUMMARY:Wedding of ${defaultEvent.couple_names}`,
-    `DESCRIPTION:We are delighted to celebrate our wedding with you!\\nPoruwa Ceremony: ${defaultEvent.poruwa_time}\\nReception: ${defaultEvent.reception_time}`,
-    `LOCATION:${defaultEvent.venue_name}, ${defaultEvent.venue_address}`,
+    `SUMMARY:Wedding of ${currentEvent.couple_names}`,
+    `DESCRIPTION:${description}`,
+    `LOCATION:${currentEvent.venue_name}, ${currentEvent.venue_address || ''}`,
     'STATUS:CONFIRMED',
     'END:VEVENT',
     'END:VCALENDAR',
@@ -50,7 +73,7 @@ export async function GET(
     status: 200,
     headers: {
       'Content-Type': 'text/calendar; charset=utf-8',
-      'Content-Disposition': `attachment; filename="wedding-${defaultEvent.couple_names.replace(/\s+/g, '-')}.ics"`,
+      'Content-Disposition': `attachment; filename="wedding-${currentEvent.couple_names.replace(/\s+/g, '-')}.ics"`,
     },
   });
 }

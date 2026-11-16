@@ -2,29 +2,22 @@
   {
     "id": "p-1",
     "event_id": "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d",
-    "image_url": "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80",
-    "caption": "Our Journey Begins",
+    "image_url": "/images/couple.jpeg",
+    "caption": "Winod & Nimnadee",
     "display_order": 1
   },
   {
     "id": "p-2",
     "event_id": "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d",
-    "image_url": "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1200&q=80",
-    "caption": "Pre-wedding memories",
+    "image_url": "/images/boy.jpeg",
+    "caption": "Winod (Groom)",
     "display_order": 2
   },
   {
     "id": "p-3",
     "event_id": "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d",
-    "image_url": "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1200&q=80",
-    "caption": "Forever Together",
+    "image_url": "/images/girl.jpeg",
+    "caption": "Nimnadee (Bride)",
     "display_order": 3
-  },
-  {
-    "id": "p-4",
-    "event_id": "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d",
-    "image_url": "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=1200&q=80",
-    "caption": "Walking into forever",
-    "display_order": 4
   }
 ]

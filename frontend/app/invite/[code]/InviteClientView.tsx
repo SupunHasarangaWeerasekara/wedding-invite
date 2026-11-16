@@ -48,13 +48,22 @@ export default function InviteClientView({
   }, [event.music_url]);
 
   const startMusic = () => {
-    if (audioRef.current) {
+    try {
+      if (!audioRef.current) {
+        const audioSrc = event.music_url || '/music/wedding.mp3';
+        const audio = new Audio(audioSrc);
+        audio.loop = true;
+        audio.volume = 0.5;
+        audioRef.current = audio;
+      }
       audioRef.current
         .play()
         .then(() => setIsPlaying(true))
         .catch((err) => {
           console.warn('Could not auto-play audio:', err);
         });
+    } catch (e) {
+      console.warn('Audio start error:', e);
     }
   };
 
@@ -72,7 +81,10 @@ export default function InviteClientView({
   };
 
   const nameParts = event.couple_names.split('&').map((n) => n.trim());
-  const sinhalaCoupleName = event.couple_names_si || 'සංජය සහ ගගනි';
+  const sinhalaCoupleName = event.couple_names_si || 'විනෝද් සහ නිම්නාදී';
+  const sinhalaParts = sinhalaCoupleName.includes('සහ')
+    ? sinhalaCoupleName.split('සහ').map((n) => n.trim())
+    : [sinhalaCoupleName, ''];
 
   // Format wedding date for display
   const weddingDateObj = new Date(event.date_iso);
@@ -112,6 +124,7 @@ export default function InviteClientView({
         <EnvelopeCover
           guestName={guest.name}
           coupleNames={event.couple_names}
+          coupleNamesSi={sinhalaCoupleName}
           venueName={event.venue_name}
           weddingDateStr={formattedDate}
           onOpen={() => setIsOpened(true)}
@@ -245,10 +258,10 @@ export default function InviteClientView({
                           Groom
                         </p>
                         <p className="font-playfair italic text-base sm:text-lg font-medium text-white">
-                          {nameParts[0] || 'Sanjaya'}
+                          {nameParts[0] || 'Winod'}
                         </p>
                         <p className="font-sinhala text-xs sm:text-sm font-semibold text-rose-300">
-                          සංජය
+                          {sinhalaParts[0] || 'විනෝද්'}
                         </p>
                       </div>
                     </div>
@@ -258,7 +271,7 @@ export default function InviteClientView({
                       <img
                         src={
                           event.bride_image_url ||
-                          'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80'
+                          '/images/girl.jpeg'
                         }
                         alt="Bride"
                         className="h-44 sm:h-52 w-full object-cover"
@@ -269,10 +282,10 @@ export default function InviteClientView({
                           Bride
                         </p>
                         <p className="font-playfair italic text-base sm:text-lg font-medium text-white">
-                          {nameParts[1] || 'Gagani'}
+                          {nameParts[1] || 'Nimnadee'}
                         </p>
                         <p className="font-sinhala text-xs sm:text-sm font-semibold text-rose-300">
-                          ගගනි
+                          {sinhalaParts[1] || 'නිම්නාදී'}
                         </p>
                       </div>
                     </div>
@@ -399,15 +412,17 @@ export default function InviteClientView({
                     />
                   </div>
 
-                  {/* Note / Theme Card */}
-                  <div className="olive-card p-4 sm:p-5 max-w-sm mx-auto shadow-xl">
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-rose-400 mb-1.5">
-                      {event.title_note || 'Note'}
-                    </p>
-                    <p className="text-xs font-medium text-white leading-relaxed">
-                      {event.text_note || 'Wedding theme: Crimson Red & Obsidian Black'}
-                    </p>
-                  </div>
+                  {/* Note / Theme Card (Rendered only if text_note is configured) */}
+                  {Boolean(event.text_note && event.text_note.trim() !== '') && (
+                    <div className="olive-card p-4 sm:p-5 max-w-sm mx-auto shadow-xl">
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-rose-400 mb-1.5">
+                        {event.title_note || 'Note'}
+                      </p>
+                      <p className="text-xs font-medium text-white leading-relaxed">
+                        {event.text_note}
+                      </p>
+                    </div>
+                  )}
 
                   {/* Photo Gallery Lightbox */}
                   <div className="max-w-sm mx-auto pt-1">

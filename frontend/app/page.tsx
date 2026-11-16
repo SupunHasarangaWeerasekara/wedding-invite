@@ -18,7 +18,7 @@ export default function Home() {
                 {defaultEvent.couple_names}
               </span>
               <span className="font-sinhala text-xs text-rose-300 font-semibold">
-                (සංජය සහ ගගනි)
+                ({defaultEvent.couple_names_si || 'විනෝද් සහ නිම්නාදී'})
               </span>
             </div>
           </div>
@@ -49,13 +49,13 @@ export default function Home() {
         <div className="mt-3 inline-flex items-center justify-center gap-2 rounded-full border border-rose-500/40 bg-rose-950/40 px-5 py-1.5 mx-auto shadow-[0_0_20px_rgba(225,29,72,0.25)]">
           <span className="text-rose-400 text-xs">✦</span>
           <span className="font-sinhala text-xl md:text-2xl font-bold text-rose-100 tracking-wider">
-            සංජය සහ ගගනි
+            {defaultEvent.couple_names_si || 'විනෝද් සහ නිම්නාදී'}
           </span>
           <span className="text-rose-400 text-xs">✦</span>
         </div>
 
         <p className="mt-4 font-playfair italic text-lg text-rose-300">
-          Saturday, December 18, 2026 • Shangri-La Hotel Colombo
+          Sunday, November 29, 2026 • {defaultEvent.venue_name}
         </p>
 
         <p className="mt-4 text-xs md:text-sm text-rose-200/80 leading-relaxed max-w-lg mx-auto">

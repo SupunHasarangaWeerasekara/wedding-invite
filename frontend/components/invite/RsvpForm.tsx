@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Guest, RsvpStatus } from '@/lib/types';
 import confetti from 'canvas-confetti';
 import { Check, X, Send, Pen } from 'lucide-react';
+import ModalDialog, { DialogVariant } from '@/components/ui/ModalDialog';
 
 interface RsvpFormProps {
   guest: Guest;
@@ -20,6 +21,18 @@ export default function RsvpForm({ guest, onRsvpUpdated, recentWishes }: RsvpFor
   const [wishText, setWishText] = useState<string>(guest.wish_text || '');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isConfirmed, setIsConfirmed] = useState(guest.rsvp_status === 'accepted');
+
+  const [modalDialog, setModalDialog] = useState<{
+    isOpen: boolean;
+    title: string;
+    description: string;
+    variant: DialogVariant;
+  }>({
+    isOpen: false,
+    title: '',
+    description: '',
+    variant: 'info',
+  });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -51,7 +64,12 @@ export default function RsvpForm({ guest, onRsvpUpdated, recentWishes }: RsvpFor
           setIsConfirmed(true);
         } else {
           setIsConfirmed(false);
-          alert('Thank you for letting us know. You will be dearly missed!');
+          setModalDialog({
+            isOpen: true,
+            title: 'Response Received',
+            description: `Dear ${guest.name}, thank you for letting us know! Even though you are unable to attend, your kind wishes and blessings are deeply appreciated.`,
+            variant: 'info',
+          });
         }
 
         if (onRsvpUpdated) {
@@ -64,11 +82,21 @@ export default function RsvpForm({ guest, onRsvpUpdated, recentWishes }: RsvpFor
           });
         }
       } else {
-        alert(data.error || 'Failed to update RSVP. Please try again.');
+        setModalDialog({
+          isOpen: true,
+          title: 'RSVP Submission Failed',
+          description: data.error || 'Failed to update RSVP. Please try again.',
+          variant: 'danger',
+        });
       }
     } catch (err) {
       console.error(err);
-      alert('An error occurred. Please try again.');
+      setModalDialog({
+        isOpen: true,
+        title: 'Connection Error',
+        description: 'An unexpected network error occurred. Please verify your connection and try again.',
+        variant: 'danger',
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -226,6 +254,18 @@ export default function RsvpForm({ guest, onRsvpUpdated, recentWishes }: RsvpFor
           </div>
         </div>
       )}
+      {/* RSVP Feedback / Error Dialog */}
+      <ModalDialog
+        isOpen={modalDialog.isOpen}
+        onClose={() => setModalDialog((prev) => ({ ...prev, isOpen: false }))}
+        onConfirm={() => setModalDialog((prev) => ({ ...prev, isOpen: false }))}
+        showCancel={false}
+        title={modalDialog.title}
+        description={modalDialog.description}
+        confirmText="OK"
+        variant={modalDialog.variant}
+        theme="dark"
+      />
     </div>
   );
 }
