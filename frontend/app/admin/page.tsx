@@ -334,8 +334,9 @@ export default function AdminPage() {
   const getWhatsAppShareUrl = (guest: { name: string; invite_code: string; phone_number?: string }) => {
     const text = formatWhatsAppMessage(guest.name, guest.invite_code);
     const phone = guest.phone_number ? guest.phone_number.replace(/\D/g, '') : '';
+    // Use api.whatsapp.com directly (wa.me shortener corrupts multibyte 4-byte emojis in HTTP 302 redirects)
     if (phone) {
-      return `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+      return `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(text)}`;
     }
     return `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
   };
@@ -841,7 +842,12 @@ export default function AdminPage() {
                               href={getWhatsAppShareUrl(guest)}
                               target="_blank"
                               rel="noopener noreferrer"
-                              title="Send via WhatsApp"
+                              onClick={() => {
+                                if (typeof navigator !== 'undefined' && navigator.clipboard) {
+                                  navigator.clipboard.writeText(formatWhatsAppMessage(guest.name, guest.invite_code)).catch(() => {});
+                                }
+                              }}
+                              title="Send via WhatsApp (Auto-copies message with emojis to clipboard)"
                               className="inline-flex items-center justify-center rounded-lg border border-emerald-500 bg-emerald-500 p-2 text-white hover:bg-emerald-600 cursor-pointer"
                             >
                               <MessageCircle className="h-3.5 w-3.5" />
@@ -1761,6 +1767,11 @@ export default function AdminPage() {
                   href={getWhatsAppShareUrl(createdGuestForShare)}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => {
+                    if (typeof navigator !== 'undefined' && navigator.clipboard) {
+                      navigator.clipboard.writeText(formatWhatsAppMessage(createdGuestForShare.name, createdGuestForShare.invite_code)).catch(() => {});
+                    }
+                  }}
                   className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-5 py-2.5 text-xs font-semibold text-white shadow-md hover:bg-emerald-700 transition cursor-pointer"
                 >
                   <MessageCircle className="h-4 w-4" />
