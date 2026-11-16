@@ -43,25 +43,25 @@ export default function FixedCalendar({
   )}&location=${encodeURIComponent(venueName)}`;
 
   return (
-    <div className="olive-card p-4 sm:p-5 max-w-sm mx-auto shadow-md">
+    <div className="olive-card p-4 sm:p-5 max-w-sm mx-auto shadow-xl">
       {/* Label & Date */}
-      <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-rose-600 mb-1">
+      <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-rose-400 mb-1">
         {title}
       </p>
-      <h3 className="font-playfair italic text-xl sm:text-2xl font-normal text-stone-900 mb-3 sm:mb-4">
+      <h3 className="font-playfair italic text-xl sm:text-2xl font-normal text-white mb-3 sm:mb-4">
         {dateFormatted}
       </h3>
 
       {/* Inner Calendar Panel */}
-      <div className="rounded-2xl border border-rose-100 bg-rose-50/60 p-3 sm:p-4 shadow-xs">
-        <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-rose-700 text-center mb-2.5 sm:mb-3">
+      <div className="rounded-2xl border border-rose-900/30 bg-[#120509]/80 p-3 sm:p-4 shadow-inner">
+        <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-rose-400 text-center mb-2.5 sm:mb-3">
           {monthName} {year}
         </p>
 
         {/* Day headers */}
         <div className="grid grid-cols-7 gap-1 text-center mb-2">
           {daysOfWeek.map((day, idx) => (
-            <div key={idx} className="text-[9px] sm:text-[10px] font-semibold text-rose-600">
+            <div key={idx} className="text-[9px] sm:text-[10px] font-semibold text-rose-400/80">
               {day}
             </div>
           ))}
@@ -76,14 +76,14 @@ export default function FixedCalendar({
             return (
               <div key={idx} className="flex items-center justify-center">
                 {isWeddingDay ? (
-                  <div className="relative flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-full bg-rose-600 font-bold text-white shadow-[0_2px_12px_rgba(225,29,72,0.4)] border-2 border-rose-200">
+                  <div className="relative flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-full bg-rose-600 font-bold text-white shadow-[0_0_15px_rgba(225,29,72,0.85)] border-2 border-rose-300">
                     <span className="text-[11px] sm:text-xs">{day}</span>
                     <span className="absolute -top-1 -right-1 flex h-3.5 w-3.5 items-center justify-center rounded-full bg-white text-[8px] text-rose-600 animate-heart-beat shadow-sm">
                       ♥
                     </span>
                   </div>
                 ) : (
-                  <span className="text-stone-700 text-[11px] sm:text-xs font-normal">{day}</span>
+                  <span className="text-slate-200 text-[11px] sm:text-xs font-light">{day}</span>
                 )}
               </div>
             );
@@ -92,11 +92,11 @@ export default function FixedCalendar({
       </div>
 
       {/* Sync links */}
-      <div className="mt-3 sm:mt-4 flex flex-col sm:flex-row gap-2 pt-2 border-t border-rose-100">
+      <div className="mt-3 sm:mt-4 flex flex-col sm:flex-row gap-2 pt-2 border-t border-rose-900/30">
         <a
           href={`/api/calendar/${inviteCode}`}
           download
-          className="flex-1 flex items-center justify-center gap-1.5 rounded-full border border-rose-300 py-2 px-3 text-[10px] uppercase tracking-wider text-rose-700 hover:bg-rose-50 transition text-center"
+          className="flex-1 flex items-center justify-center gap-1.5 rounded-full border border-rose-500/40 py-2 px-3 text-[10px] uppercase tracking-wider text-rose-300 hover:bg-rose-500/10 transition text-center"
         >
           <Download className="h-3 w-3" />
           <span>Download .ics</span>
@@ -106,7 +106,7 @@ export default function FixedCalendar({
           href={googleCalendarUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex-1 flex items-center justify-center gap-1.5 rounded-full bg-rose-50 border border-rose-200 py-2 px-3 text-[10px] uppercase tracking-wider text-rose-700 hover:bg-rose-100 transition text-center font-medium"
+          className="flex-1 flex items-center justify-center gap-1.5 rounded-full bg-rose-900/40 border border-rose-500/30 py-2 px-3 text-[10px] uppercase tracking-wider text-white hover:bg-rose-800/50 transition text-center"
         >
           <ExternalLink className="h-3 w-3" />
           <span>Google Cal</span>

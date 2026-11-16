@@ -93,18 +93,4 @@ export const sampleGallery: GalleryPhoto[] = [
     caption: 'Winod & Nimnadee',
     display_order: 4,
   },
-  {
-    id: 'p-5',
-    event_id: defaultEvent.id,
-    image_url: '/images/boy.webp',
-    caption: 'Winod (Groom)',
-    display_order: 5,
-  },
-  {
-    id: 'p-6',
-    event_id: defaultEvent.id,
-    image_url: '/images/girl.webp',
-    caption: 'Nimnadee (Bride)',
-    display_order: 6,
-  },
 ];

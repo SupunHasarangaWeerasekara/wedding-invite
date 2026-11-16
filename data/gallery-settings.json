@@ -18,15 +18,5 @@
     "image_url": "/images/couple.webp",
     "caption": "Winod & Nimnadee",
     "display_order": 4
-  },
-  {
-    "image_url": "/images/boy.webp",
-    "caption": "Winod (Groom)",
-    "display_order": 5
-  },
-  {
-    "image_url": "/images/girl.webp",
-    "caption": "Nimnadee (Bride)",
-    "display_order": 6
   }
 ]

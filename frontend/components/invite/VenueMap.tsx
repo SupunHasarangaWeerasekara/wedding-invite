@@ -11,15 +11,15 @@ interface VenueMapProps {
 
 export default function VenueMap({ venueName, venueAddress, mapUrl, title = 'Venue' }: VenueMapProps) {
   return (
-    <div className="olive-card p-5 max-w-sm mx-auto shadow-md">
-      <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-rose-600 mb-2">
+    <div className="olive-card p-5 max-w-sm mx-auto shadow-xl">
+      <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-rose-400 mb-2">
         {title}
       </p>
 
-      <h3 className="font-playfair italic text-xl font-normal text-stone-900 font-medium mb-1">
+      <h3 className="font-playfair italic text-xl font-normal text-white mb-1">
         {venueName}
       </h3>
-      <p className="text-xs text-stone-600 mb-5 leading-relaxed">
+      <p className="text-xs text-rose-200/80 mb-5 leading-relaxed">
         {venueAddress}
       </p>
 

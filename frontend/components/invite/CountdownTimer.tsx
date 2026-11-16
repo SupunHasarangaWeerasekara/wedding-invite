@@ -43,8 +43,8 @@ export default function CountdownTimer({
   ];
 
   return (
-    <div className="olive-card p-4 sm:p-5 max-w-sm mx-auto shadow-md">
-      <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-rose-600 mb-3 sm:mb-4 text-center">
+    <div className="olive-card p-4 sm:p-5 max-w-sm mx-auto shadow-xl">
+      <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-rose-400 mb-3 sm:mb-4 text-center">
         {title}
       </p>
 
@@ -52,15 +52,15 @@ export default function CountdownTimer({
         {items.map((item, idx) => (
           <div
             key={idx}
-            className="flex flex-col items-center justify-center rounded-2xl py-2.5 sm:py-3 px-1 border border-rose-200 shadow-xs"
+            className="flex flex-col items-center justify-center rounded-2xl py-2.5 sm:py-3 px-1 border border-rose-500/30 shadow-md"
             style={{
-              background: 'linear-gradient(180deg, #FFF5F6 0%, #FFE4E6 100%)',
+              background: 'linear-gradient(180deg, #2D0913 0%, #130408 100%)',
             }}
           >
-            <span className="font-playfair text-xl sm:text-2xl md:text-3xl font-medium text-stone-900">
+            <span className="font-playfair text-xl sm:text-2xl md:text-3xl font-normal text-white">
               {item.value}
             </span>
-            <span className="text-[8px] sm:text-[9px] font-semibold tracking-wider text-rose-700 mt-0.5">
+            <span className="text-[8px] sm:text-[9px] font-semibold tracking-wider text-rose-300 mt-0.5">
               {item.label}
             </span>
           </div>

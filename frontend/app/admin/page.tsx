@@ -6,6 +6,7 @@ import {
   Users,
   CheckCircle2,
   XCircle,
+  X,
   Clock,
   Plus,
   MessageCircle,
@@ -63,6 +64,7 @@ export default function AdminPage() {
 
   // New guest modal
   const [showAddModal, setShowAddModal] = useState(false);
+  const [namePrefix, setNamePrefix] = useState('Mr. & Mrs.');
   const [newName, setNewName] = useState('');
   const [newMaxSeats, setNewMaxSeats] = useState(2);
   const [newPhone, setNewPhone] = useState('');
@@ -197,17 +199,23 @@ export default function AdminPage() {
 
   const handleAddGuest = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!newName) return;
+    if (!newName.trim()) return;
 
     setIsAdding(true);
+    const fullName = namePrefix ? `${namePrefix} ${newName.trim()}` : newName.trim();
+    const cleanPhone = newPhone.replace(/[^0-9]/g, '');
+    const formattedPhone = cleanPhone
+      ? (cleanPhone.startsWith('94') ? `+${cleanPhone}` : `+94${cleanPhone.replace(/^0+/, '')}`)
+      : '';
+
     try {
       const res = await fetch('/api/admin/guests', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          name: newName,
+          name: fullName,
           max_seats: newMaxSeats,
-          phone_number: newPhone,
+          phone_number: formattedPhone,
         }),
       });
 
@@ -216,6 +224,7 @@ export default function AdminPage() {
         setGuests([data.guest, ...guests]);
         setShowAddModal(false);
         setNewName('');
+        setNamePrefix('Mr. & Mrs.');
         setNewMaxSeats(2);
         setNewPhone('');
         setCreatedGuestForShare(data.guest);
@@ -1526,30 +1535,68 @@ export default function AdminPage() {
         {showAddModal && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-xs">
             <div
-              className={`w-full max-w-md rounded-2xl p-6 shadow-2xl transition ${
+              className={`w-full max-w-md rounded-2xl p-5 sm:p-6 shadow-2xl transition ${
                 isDark
                   ? 'bg-[#180E13] border border-rose-500/30 text-white shadow-[0_20px_50px_rgba(0,0,0,0.8)]'
                   : 'bg-white border border-gray-200 text-[#2C1E1A] shadow-xl'
               }`}
             >
-              <h2
-                className={`font-serif text-xl font-bold ${
-                  isDark ? 'text-white' : 'text-[#2C1E1A]'
-                }`}
-              >
-                Add New Guest
-              </h2>
+              {/* Modal Header with Title and Close Button */}
+              <div className="flex items-center justify-between pb-2 border-b border-rose-900/20">
+                <h2
+                  className={`font-serif text-lg sm:text-xl font-bold ${
+                    isDark ? 'text-white' : 'text-[#2C1E1A]'
+                  }`}
+                >
+                  Add New Guest
+                </h2>
+                <button
+                  type="button"
+                  onClick={() => setShowAddModal(false)}
+                  className={`p-1.5 rounded-full transition cursor-pointer ${
+                    isDark
+                      ? 'text-gray-400 hover:text-white hover:bg-rose-950/60'
+                      : 'text-gray-400 hover:text-gray-700 hover:bg-gray-100'
+                  }`}
+                  aria-label="Close"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
+
               <form onSubmit={handleAddGuest} className="mt-4 space-y-4 text-xs">
+                {/* Guest Name with Title Dropdown */}
                 <div>
                   <label className={labelCls}>Guest Name / Family Name</label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="e.g., Mr. & Mrs. Perera"
-                    value={newName}
-                    onChange={(e) => setNewName(e.target.value)}
-                    className={inputCls}
-                  />
+                  <div className="flex gap-2 mt-1">
+                    <select
+                      value={namePrefix}
+                      onChange={(e) => setNamePrefix(e.target.value)}
+                      className={`w-28 sm:w-32 rounded-xl px-2.5 py-2.5 text-xs font-medium focus:outline-none focus:ring-1 focus:ring-rose-500 cursor-pointer ${
+                        isDark
+                          ? 'bg-[#12080D] border border-rose-500/30 text-rose-200'
+                          : 'bg-gray-50 border border-gray-300 text-gray-800'
+                      }`}
+                    >
+                      <option value="Mr. & Mrs.">Mr. & Mrs.</option>
+                      <option value="Mr.">Mr.</option>
+                      <option value="Mrs.">Mrs.</option>
+                      <option value="Miss.">Miss.</option>
+                      <option value="Dr.">Dr.</option>
+                      <option value="Dr. & Mrs.">Dr. & Mrs.</option>
+                      <option value="Rev.">Rev.</option>
+                      <option value="Family">Family</option>
+                      <option value="">(None)</option>
+                    </select>
+                    <input
+                      type="text"
+                      required
+                      placeholder="e.g., Perera"
+                      value={newName}
+                      onChange={(e) => setNewName(e.target.value)}
+                      className={`flex-1 ${inputCls}`}
+                    />
+                  </div>
                 </div>
 
                 <div>
@@ -1564,15 +1611,39 @@ export default function AdminPage() {
                   />
                 </div>
 
+                {/* WhatsApp Phone with Fixed +94 Prefix */}
                 <div>
                   <label className={labelCls}>WhatsApp Phone (Optional)</label>
-                  <input
-                    type="tel"
-                    placeholder="e.g., +94771234567"
-                    value={newPhone}
-                    onChange={(e) => setNewPhone(e.target.value)}
-                    className={inputCls}
-                  />
+                  <div className="relative flex items-center mt-1">
+                    <span
+                      className={`inline-flex items-center px-3 py-2.5 text-xs font-semibold rounded-l-xl border-y border-l select-none ${
+                        isDark
+                          ? 'bg-[#24151C] border-rose-500/30 text-rose-300'
+                          : 'bg-gray-100 border-gray-300 text-gray-700'
+                      }`}
+                    >
+                      +94
+                    </span>
+                    <input
+                      type="tel"
+                      placeholder="771234567"
+                      value={newPhone}
+                      onChange={(e) => {
+                        let val = e.target.value.replace(/[^0-9]/g, '');
+                        if (val.startsWith('94')) val = val.substring(2);
+                        if (val.startsWith('0')) val = val.substring(1);
+                        setNewPhone(val);
+                      }}
+                      className={`flex-1 rounded-r-xl rounded-l-none border-y border-r px-3 py-2.5 text-xs focus:outline-none focus:ring-1 focus:ring-rose-500 ${
+                        isDark
+                          ? 'bg-[#12080D] border-rose-500/30 text-white placeholder-gray-500'
+                          : 'bg-white border-gray-300 text-gray-900 placeholder-gray-400'
+                      }`}
+                    />
+                  </div>
+                  <p className={`mt-1 text-[10px] ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
+                    Type 9 digits without leading 0 (e.g. 771234567)
+                  </p>
                 </div>
 
                 <div className="flex justify-end gap-2 pt-3">

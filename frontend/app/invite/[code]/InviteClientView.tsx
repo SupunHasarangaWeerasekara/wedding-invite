@@ -240,7 +240,7 @@ export default function InviteClientView({
                   {/* Couple Profile Cards (Groom & Bride) */}
                   <div className="grid grid-cols-2 gap-2.5 sm:gap-3.5 my-6">
                     {/* Groom Card */}
-                    <div className="relative overflow-hidden rounded-2xl border border-rose-200/80 bg-white shadow-md">
+                    <div className="relative overflow-hidden rounded-2xl border border-rose-500/30 bg-[#14070B] shadow-xl">
                       <img
                         src={
                           event.groom_image_url ||
@@ -251,22 +251,22 @@ export default function InviteClientView({
                         decoding="async"
                         className="h-44 sm:h-52 w-full object-cover"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
                       <div className="absolute bottom-2.5 sm:bottom-3 left-0 right-0 text-center px-1">
-                        <p className="text-[8px] sm:text-[9px] uppercase tracking-[0.25em] font-semibold text-rose-300">
+                        <p className="text-[8px] sm:text-[9px] uppercase tracking-[0.25em] font-semibold text-rose-400">
                           Groom
                         </p>
                         <p className="font-playfair italic text-base sm:text-lg font-medium text-white">
                           {nameParts[0] || 'Winod'}
                         </p>
-                        <p className="font-sinhala text-xs sm:text-sm font-semibold text-rose-200">
+                        <p className="font-sinhala text-xs sm:text-sm font-semibold text-rose-300">
                           {sinhalaParts[0] || 'විනෝද්'}
                         </p>
                       </div>
                     </div>
 
                     {/* Bride Card */}
-                    <div className="relative overflow-hidden rounded-2xl border border-rose-200/80 bg-white shadow-md">
+                    <div className="relative overflow-hidden rounded-2xl border border-rose-500/30 bg-[#14070B] shadow-xl">
                       <img
                         src={
                           event.bride_image_url ||
@@ -277,15 +277,15 @@ export default function InviteClientView({
                         decoding="async"
                         className="h-44 sm:h-52 w-full object-cover"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
                       <div className="absolute bottom-2.5 sm:bottom-3 left-0 right-0 text-center px-1">
-                        <p className="text-[8px] sm:text-[9px] uppercase tracking-[0.25em] font-semibold text-rose-300">
+                        <p className="text-[8px] sm:text-[9px] uppercase tracking-[0.25em] font-semibold text-rose-400">
                           Bride
                         </p>
                         <p className="font-playfair italic text-base sm:text-lg font-medium text-white">
                           {nameParts[1] || 'Nimnadee'}
                         </p>
-                        <p className="font-sinhala text-xs sm:text-sm font-semibold text-rose-200">
+                        <p className="font-sinhala text-xs sm:text-sm font-semibold text-rose-300">
                           {sinhalaParts[1] || 'නිම්නාදී'}
                         </p>
                       </div>
@@ -322,7 +322,7 @@ export default function InviteClientView({
                 >
                   {/* Couple Circular Portrait & Names */}
                   <div className="text-center pt-2 pb-1">
-                    <div className="relative mx-auto mb-3 sm:mb-4 flex h-20 w-20 sm:h-24 sm:w-24 items-center justify-center overflow-hidden rounded-full border-2 border-rose-400 shadow-[0_4px_25px_rgba(225,29,72,0.2)] bg-white">
+                    <div className="relative mx-auto mb-3 sm:mb-4 flex h-20 w-20 sm:h-24 sm:w-24 items-center justify-center overflow-hidden rounded-full border-2 border-rose-500 shadow-[0_0_25px_rgba(225,29,72,0.4)] bg-[#14070B]">
                       <img
                         src={
                           event.couple_avatar_url ||
@@ -357,23 +357,23 @@ export default function InviteClientView({
                   </div>
 
                   {/* Parents Card */}
-                  <div className="olive-card p-4 sm:p-5 max-w-sm mx-auto shadow-md space-y-3 sm:space-y-4">
+                  <div className="olive-card p-4 sm:p-5 max-w-sm mx-auto shadow-xl space-y-3 sm:space-y-4">
                     <div>
-                      <p className="text-[9px] font-semibold uppercase tracking-[0.25em] text-rose-600 mb-1">
+                      <p className="text-[9px] font-semibold uppercase tracking-[0.25em] text-rose-400 mb-1">
                         Beloved Son Of
                       </p>
-                      <p className="font-playfair italic text-sm sm:text-base text-stone-900 font-medium">
+                      <p className="font-playfair italic text-sm sm:text-base text-white">
                         {event.beloved_son_of || 'Rathnasiri & Karunawathi'}
                       </p>
                     </div>
 
-                    <div className="h-px bg-rose-100" />
+                    <div className="h-px bg-rose-900/30" />
 
                     <div>
-                      <p className="text-[9px] font-semibold uppercase tracking-[0.25em] text-rose-600 mb-1">
+                      <p className="text-[9px] font-semibold uppercase tracking-[0.25em] text-rose-400 mb-1">
                         Beloved Daughter Of
                       </p>
-                      <p className="font-playfair italic text-sm sm:text-base text-stone-900 font-medium">
+                      <p className="font-playfair italic text-sm sm:text-base text-white">
                         {event.beloved_daughter_of || 'Gamini & Madhuka'}
                       </p>
                     </div>
@@ -415,11 +415,11 @@ export default function InviteClientView({
 
                   {/* Note / Theme Card (Rendered only if text_note is configured) */}
                   {Boolean(event.text_note && event.text_note.trim() !== '') && (
-                    <div className="olive-card p-4 sm:p-5 max-w-sm mx-auto shadow-md">
-                      <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-rose-600 mb-1.5">
+                    <div className="olive-card p-4 sm:p-5 max-w-sm mx-auto shadow-xl">
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-rose-400 mb-1.5">
                         {event.title_note || 'Note'}
                       </p>
-                      <p className="text-xs font-medium text-stone-800 leading-relaxed">
+                      <p className="text-xs font-medium text-white/90 leading-relaxed">
                         {event.text_note}
                       </p>
                     </div>

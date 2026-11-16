@@ -25,14 +25,13 @@ html, body {
   font-family: 'Abhaya Libre', 'Noto Serif Sinhala', Georgia, serif !important;
 }
 
-/* Luxury Pearl White & Rose Translucent Card */
+/* Luxury Crimson & Obsidian Black Translucent Card inside White Background */
 .olive-card {
-  background: rgba(255, 255, 255, 0.96);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(244, 63, 94, 0.22);
-  box-shadow: 0 10px 30px -5px rgba(225, 29, 72, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.04);
+  background: #14070B;
+  border: 1px solid rgba(225, 29, 72, 0.35);
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.4), 0 0 20px -4px rgba(225, 29, 72, 0.15);
   border-radius: 20px;
+  color: #FFF1F2;
 }
 
 /* Heartbeat on calendar */

@@ -103,24 +103,24 @@ export default function RsvpForm({ guest, onRsvpUpdated, recentWishes }: RsvpFor
   };
 
   return (
-    <div className="olive-card p-5 max-w-sm mx-auto shadow-md">
-      <p className="font-playfair italic text-lg text-stone-900 font-medium mb-3">
+    <div className="olive-card p-5 max-w-sm mx-auto shadow-xl">
+      <p className="font-playfair italic text-lg text-white mb-3">
         Dear {guest.name},
       </p>
 
       {isConfirmed ? (
-        <div className="rounded-2xl border border-rose-200 bg-rose-50 p-5 text-center shadow-xs">
-          <p className="font-semibold text-base text-rose-700 flex items-center justify-center gap-1.5">
+        <div className="rounded-2xl border border-rose-500/40 bg-[#240810]/90 p-5 text-center shadow-inner">
+          <p className="font-semibold text-base text-rose-300 flex items-center justify-center gap-1.5">
             <span>✓</span>
             <span>You're confirmed!</span>
           </p>
-          <p className="text-xs text-stone-700 mt-1.5 leading-relaxed">
+          <p className="text-xs text-rose-100 mt-1.5 leading-relaxed">
             We can't wait to celebrate with you, {guest.name.split(' ')[0]}!
           </p>
 
           <button
             onClick={() => setIsConfirmed(false)}
-            className="mt-4 inline-flex items-center gap-1 text-[11px] text-rose-600 hover:underline font-medium"
+            className="mt-4 inline-flex items-center gap-1 text-[11px] text-rose-400 hover:underline"
           >
             <Pen className="h-3 w-3" />
             <span>Update your RSVP</span>
@@ -128,8 +128,8 @@ export default function RsvpForm({ guest, onRsvpUpdated, recentWishes }: RsvpFor
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-4">
-          <p className="text-xs text-stone-700 font-medium">
-            We have reserved up to <strong className="text-rose-700">{guest.max_seats} seat{guest.max_seats > 1 ? 's' : ''}</strong> for you.
+          <p className="text-xs text-rose-300 font-medium">
+            We have reserved up to <strong className="text-white">{guest.max_seats} seat{guest.max_seats > 1 ? 's' : ''}</strong> for you.
           </p>
 
           {/* Accept / Decline Toggles */}
@@ -139,8 +139,8 @@ export default function RsvpForm({ guest, onRsvpUpdated, recentWishes }: RsvpFor
               onClick={() => setStatus('accepted')}
               className={`flex items-center justify-center gap-1.5 rounded-full py-2.5 text-xs font-semibold transition cursor-pointer ${
                 status === 'accepted'
-                  ? 'bg-rose-600 text-white shadow-sm border border-rose-500'
-                  : 'bg-stone-100 text-stone-700 border border-stone-200 hover:bg-stone-200'
+                  ? 'bg-rose-600 text-white shadow-md border border-rose-400'
+                  : 'bg-[#18080C] text-rose-300/70 border border-rose-900/40 hover:bg-[#250D15]'
               }`}
             >
               <Check className="h-3.5 w-3.5" />
@@ -152,8 +152,8 @@ export default function RsvpForm({ guest, onRsvpUpdated, recentWishes }: RsvpFor
               onClick={() => setStatus('declined')}
               className={`flex items-center justify-center gap-1.5 rounded-full py-2.5 text-xs font-semibold transition cursor-pointer ${
                 status === 'declined'
-                  ? 'bg-stone-700 text-white shadow-sm border border-stone-600'
-                  : 'bg-stone-100 text-stone-600 border border-stone-200 hover:bg-stone-200'
+                  ? 'bg-[#3A0F14] text-white shadow-md border border-rose-500'
+                  : 'bg-[#18080C] text-slate-400 border border-rose-900/40 hover:bg-[#250D15]'
               }`}
             >
               <X className="h-3.5 w-3.5" />
@@ -165,13 +165,13 @@ export default function RsvpForm({ guest, onRsvpUpdated, recentWishes }: RsvpFor
             <div className="space-y-3 pt-1">
               {/* Attending Count */}
               <div>
-                <label className="block text-[10px] uppercase tracking-wider text-rose-700 font-semibold mb-1">
+                <label className="block text-[10px] uppercase tracking-wider text-rose-400 mb-1">
                   Number Attending (Max {guest.max_seats})
                 </label>
                 <select
                   value={attendingCount}
                   onChange={(e) => setAttendingCount(Number(e.target.value))}
-                  className="w-full rounded-xl border border-rose-200 bg-white px-3 py-2 text-xs text-stone-900 focus:outline-none focus:border-rose-500 shadow-xs"
+                  className="w-full rounded-xl border border-rose-900/40 bg-[#120509] px-3 py-2 text-xs text-white focus:outline-none focus:border-rose-500"
                 >
                   {Array.from({ length: guest.max_seats }, (_, i) => i + 1).map((n) => (
                     <option key={n} value={n}>
@@ -183,7 +183,7 @@ export default function RsvpForm({ guest, onRsvpUpdated, recentWishes }: RsvpFor
 
               {/* Dietary Note */}
               <div>
-                <label className="block text-[10px] uppercase tracking-wider text-rose-700 font-semibold mb-1">
+                <label className="block text-[10px] uppercase tracking-wider text-rose-400 mb-1">
                   Dietary Preferences / Notes (Optional)
                 </label>
                 <input
@@ -191,7 +191,7 @@ export default function RsvpForm({ guest, onRsvpUpdated, recentWishes }: RsvpFor
                   value={dietaryNote}
                   onChange={(e) => setDietaryNote(e.target.value)}
                   placeholder="e.g. Vegetarian"
-                  className="w-full rounded-xl border border-rose-200 bg-white px-3 py-2 text-xs text-stone-900 placeholder-stone-400 focus:outline-none focus:border-rose-500 shadow-xs"
+                  className="w-full rounded-xl border border-rose-900/40 bg-[#120509] px-3 py-2 text-xs text-white placeholder-rose-300/40 focus:outline-none focus:border-rose-500"
                 />
               </div>
             </div>
@@ -199,7 +199,7 @@ export default function RsvpForm({ guest, onRsvpUpdated, recentWishes }: RsvpFor
 
           {/* Wish Text */}
           <div>
-            <label className="block text-[10px] uppercase tracking-wider text-rose-700 font-semibold mb-1">
+            <label className="block text-[10px] uppercase tracking-wider text-rose-400 mb-1">
               Send a Wish to the Couple
             </label>
             <textarea
@@ -207,7 +207,7 @@ export default function RsvpForm({ guest, onRsvpUpdated, recentWishes }: RsvpFor
               value={wishText}
               onChange={(e) => setWishText(e.target.value)}
               placeholder="Your blessings..."
-              className="w-full rounded-xl border border-rose-200 bg-white p-2.5 text-xs text-stone-900 placeholder-stone-400 focus:outline-none focus:border-rose-500 shadow-xs"
+              className="w-full rounded-xl border border-rose-900/40 bg-[#120509] p-2.5 text-xs text-white placeholder-rose-300/40 focus:outline-none focus:border-rose-500"
             />
           </div>
 
@@ -228,25 +228,25 @@ export default function RsvpForm({ guest, onRsvpUpdated, recentWishes }: RsvpFor
 
       {/* Guestbook Blessings & Wishes matching Architecture Plan */}
       {recentWishes && recentWishes.length > 0 && (
-        <div className="mt-5 pt-4 border-t border-rose-100">
-          <p className="text-[10px] uppercase tracking-[0.25em] font-semibold text-rose-600 mb-3 text-center">
+        <div className="mt-5 pt-4 border-t border-rose-900/30">
+          <p className="text-[10px] uppercase tracking-[0.25em] font-semibold text-rose-400 mb-3 text-center">
             Guestbook Blessings
           </p>
           <div className="space-y-2.5 max-h-56 overflow-y-auto pr-1">
             {recentWishes.map((w, idx) => (
               <div
                 key={idx}
-                className="rounded-xl border border-rose-100 bg-rose-50/60 p-3 shadow-xs"
+                className="rounded-xl border border-rose-900/40 bg-[#16080C]/80 p-3 shadow-sm"
               >
                 <div className="flex items-center justify-between mb-1">
-                  <span className="font-semibold text-xs text-rose-800">
+                  <span className="font-medium text-xs text-rose-200">
                     {w.name}
                   </span>
-                  <span className="text-[10px] text-stone-400">
+                  <span className="text-[10px] text-rose-400/60">
                     {w.date}
                   </span>
                 </div>
-                <p className="text-xs text-stone-700 italic font-normal leading-relaxed">
+                <p className="text-xs text-white/90 italic font-light leading-relaxed">
                   "{w.wish}"
                 </p>
               </div>
@@ -264,7 +264,7 @@ export default function RsvpForm({ guest, onRsvpUpdated, recentWishes }: RsvpFor
         description={modalDialog.description}
         confirmText="OK"
         variant={modalDialog.variant}
-        theme="light"
+        theme="dark"
       />
     </div>
   );
