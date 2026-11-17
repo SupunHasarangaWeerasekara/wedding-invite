@@ -437,7 +437,15 @@ export default function InviteClientView({
                   <div id="rsvp" className="pt-1">
                     <RsvpForm
                       guest={guest}
-                      onRsvpUpdated={(u) => setGuest(u)}
+                      onRsvpUpdated={(u) => {
+                        setGuest(u);
+                        if (u.wish_text && u.wish_text.trim()) {
+                          setRecentWishes((prev) => [
+                            { name: u.name, wish: u.wish_text!, date: 'Just now' },
+                            ...prev.filter((w) => w.name !== u.name),
+                          ]);
+                        }
+                      }}
                       recentWishes={recentWishes}
                     />
                   </div>
